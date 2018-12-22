@@ -1,0 +1,471 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="ChongJing001">
+  
+  
+  
+  
+    <meta name="description" content="10 11Python是一种解释型、面向对象、动态数据类型的高级程序设计语言
+原码、反码、补码原码：规定了字节数，写明了符号位，就得到数据的原码反码：正数的反码是其原码，负数的反码是其原码的符号位不动，其他位取反
+编译型语言–&gt;编译器–&gt;最终可执行文件                                                                 ...">
+  
+  <title>python基础语法 [ ChongJing001 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/hollow.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+    <div class="item prev">
+      <a href="/2018/12/22/Linux/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        Linux常用终端命令
+      </div>
+    </div>
+  
+  
+    <div class="item next">
+      <a href="/2018/12/22/vim编辑器之神/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        vim编辑器之神
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onclick="openUserCard()">
+          <img id="avatar" src="https://ojlty2hua.qnssl.com/image-1545275902117-NWJhNDNhZWUzMWY2MTM2YzFiNmI2MzI2LmpwZw==.jpg?imageView2/0/q/75|imageslim">
+          <div id="homelink">ChongJing001</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/index.html">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="http://120.79.51.163/">Myweb</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  
+
+  <article id="post">
+    <h1>python基础语法</h1>
+    <p class="page-title-sub">
+      <span id="post-title-date">撰写于 2018-12-22</span>
+      
+        <span id="post-title-updated">修改于 2018-12-22</span>
+      
+      
+      <span id="post-title-categories">分类
+      
+      
+        
+        
+        <a href="/categories/python/">python</a>
+      
+      </span>
+      
+      
+      <span id="post-title-tags">
+      标签
+      
+      
+        
+        
+        <a href="/tags/自学记录/">自学记录</a>
+      
+      </span>
+      
+    </p>
+    
+    <h3 id="10-11"><a href="#10-11" class="headerlink" title="10 11"></a><strong>10 11</strong></h3><p>Python是一种解释型、面向对象、动态数据类型的高级程序设计语言</p>
+<p>原码、反码、补码<br>原码：规定了字节数，写明了符号位，就得到数据的原码<br>反码：正数的反码是其原码，负数的反码是其原码的符号位不动，其他位取反</p>
+<p>编译型语言–&gt;编译器–&gt;最终可执行文件<br>                                                                             操作系统（windows/Linux/Mac）–&gt;CPU<br>解释型语言–&gt;解释器（逐行解释每一句源代码）</p>
+<p>IDE ：继承开发环境</p>
+<p>Linux下重置pycharm<br>1、关闭正在运行的pycharm<br>2、rm -r ~/.pycharm2018.2<br>3、重启pycharm</p>
+<p>注释：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># 内容（#后应添加一个空格，以保持代码整齐）</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>  关于代码规范<br>  <a href="http://www.python.org/dev/peps/pep-0008/" target="_blank" rel="noopener">http://www.python.org/dev/peps/pep-0008/</a><br>  谷歌对应中文文档：<br>   <a href="http://zh-google-styleguide.readthedocs.io/en/latest/google-python-styleguide/python_style_rules/" target="_blank" rel="noopener">http://zh-google-styleguide.readthedocs.io/en/latest/google-python-styleguide/python_style_rules/</a></p>
+</blockquote>
+<p>算术运算符<br>// ：取整数  例： 9 // 2  ——&gt;4<br>% ：取余数  例： 9 % 2 ——&gt;1<br><strong> ：幂（次方）例： 2 </strong> 3 —-&gt;8<br>变量的类型<br>数字型<br>     整数型 int<br>     浮点型 float<br>     布尔型 bool<br>     复数型 complex  ：主要用于科学计算<br>非数字型<br>     字符串<br>     列表<br>     元祖<br>     字典<br>数据反转参考（ <a href="https://blog.csdn.net/weixin_41829272/article/details/80851720" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41829272/article/details/80851720</a> ）</p>
+<h3 id="10-12"><a href="#10-12" class="headerlink" title="10 12"></a>10 12</h3><p>格式化字符       含义<br>%s                   字符串<br>%d                  有符号十进制整数，%06d 表示输出的整数显示位数，不足的地方用0补全<br>%f                   浮点数，%.02f 表示小数点后显示两位<br>%%                 输出%</p>
+<p>代码缩进为一个tab键，或者4个空格  ———建议使用空格<br>Ctrl 加 /  表示快速注释</p>
+<p>逻辑运算符<br>and   与<br>or      或者<br>not    非</p>
+<h3 id="10-13"><a href="#10-13" class="headerlink" title="10 13"></a>10 13</h3><p>随机数<br>import  random   导入工具包<br>random.randint() 随机整数</p>
+<p>程序开发的三大流程<br>-顺序：从上到下，按顺序执行代码<br>-分支：根据条件判断，决定执行代码的分支<br>-循环：让特定代码重复执行<br>break 和 continue<br>break：某一条件满足时，退出循环，不在执行后续重复的代码<br>continue ：某一条件满足时，不执行后续重复的代码</p>
+<p>print 自动换行问题<br>print(“内容” end = “”) 取消自动换行</p>
+<h3 id="10-14"><a href="#10-14" class="headerlink" title="10 14"></a>10 14</h3><p>函数<br><strong>具有独立功能的代码块  在需要的时候调用</strong><br>语法：  def  函数名():<br>                   函数封装的代码<br>                   …….<br>函数的调用： 函数名（）<br>函数文档注释：函数内使用”””  内容 “””    在调用函数处使用Ctrl +q 查看</p>
+<ul>
+<li>形参和实参<br>形参：定义函数时，小括号里的参数，是用来接收参数的，在函数内部作为 变量使用<br>实参：调用函数时，小括号里的参数，是用来把数据传递到 函数内部 使用的</li>
+<li>函数的返回值<br>return 表示返回，后续的代码都不会执行</li>
+</ul>
+<p>高级变量类型<br>列表<br>元祖<br>字典<br>字符串</p>
+<p>列表：在其他语言中通常叫 数组<br>          列表用[]定义，数据之间使用 , 分隔<br>          索引从0开始<br>          语法：例  names = [“张三”,”李四”]<br>列表常用操作方法<br>增加         列表.insert(索引，数据)        在指定位置插入数据<br>                列表.append(数据)              在末尾追加数据<br>                列表.extend(列表2)              将列表2 的数据追加到列表<br>修改         列表[索引] = 数据                修改指定索引的数据<br>删除         del 列表[索引]                      删除索引的数据<br>                列表.remove(数据)              删除第一个出现的指定数据<br>                列表.pop                             删除末尾数据<br>                列表.pop(索引)                    删除指定索引数据<br>                列表.clear                            清空列表<br>统计         len(列表)                              列表长度<br>                列表.count(数据)                  统计在列表中出现的次数<br>排序         列表.sort()                            升序排序<br>                列表.sort(reverse = True)    降序排序<br>                列表.reverse()                      逆序、反转<br>循环遍历： 从头到尾依次从列表中获取数据<br>                 在循环内部针对每一个元素，执行相同的操作</p>
+<p>元组： 由多个元素组成的序列   与列表相似，不同之处  元组元素不能修改<br>元组用()定义</p>
+<h3 id="10-15"><a href="#10-15" class="headerlink" title="10 15"></a>10 15</h3><p>字典：字典用{}定义<br>          字典使用键值对存储数据，键值对之间使用 , 分隔<br>              键 key  是索引（必须是不可变类型的变量）<br>              值 value  是数据 （可以是任意类型）<br>              键和值之间使用  : 分隔<br>              键必须是唯一的<br>              值可以取任何数据类型，但 键只能使用字符串、数字、元组</p>
+<p>字符串<br>常用方法：<br>查找与替换          变量名.startswith ()      以…开头<br>                                     .endswith  ()      以…结束<br>                                     .find ()               指定查找内容<br>                                     .replace ()          替换<br>对齐                              .center()             居中对齐<br>                                     .ljust()                左对齐<br>                                     .rjust()                右对齐<br>去掉空白字符                 .strip()                去除空白字符<br>拆分和连接                    .split()                 拆分   返回一个列表类型<br>                                     .join()                 连接   返回一个字符串类型</p>
+<p>字符串的切片<br>      切片 使用索引值来限定范围，从一个大的字符串中切出小的字符串<br> 语法：  字符串[开始索引 : 结束索引：步长]<br>index ：如果指定的字符串不存在，会报错<br>find ：如果指定的字符串不存在，会返回-1</p>
+<h3 id="10-16"><a href="#10-16" class="headerlink" title="10 16"></a>10 16</h3><p>公共方法<br>python内置函数<br>len()                   计算容器中元素的个数<br>del()                   删除变量<br>max()                 返回容器中元素的最大值                 如果是字典只对key比较<br>min()                  返回容器中元素的最小值                 如果是字典只对key比较<br>**注意：字典没有大小比较<br>成员运算符： in   和  not in<br>完整的for循环语法：<br>           for  变量   in  集合:<br>                  循环体代码<br>           else:<br>                  没有通过break退出循环，循环执行后，会执行的代码</p>
+<p>pycharm中TODO注释<br>在 # 后跟上 TODO，用于标记需要去做的工作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#！ ：叫做Shebang 或者 Sha-bang</span><br></pre></td></tr></table></figure></p>
+<p>指明 执行这个脚本文件的解释程序</p>
+<p>10 17</p>
+<ul>
+<li>变量高级<br>1.变量引用<br>2.可变类型（列表、字典）和不可变类型<br>3.局部变量和全局变量<br>   局部变量：在函数内部定义，只能在函数内部使用<pre><code>函数执行后，函数内部的局部变量，会被系统回收
+不同函数，可以定义相同名字的局部变量，互不影响
+</code></pre>   全局变量：在函数外部定义的变量，所有函数内部都能使用这个变量<pre><code>   在函数内部，可以通过全局变量的引用获取对应的数据
+   但是，不允许直接修改全局变量的引用（使用赋值语句修改全局变量的值）
+  在函数内部可以使用 global 关键字修改全局变量
+  语法：   num = 10
+               def  demo():
+                     global num  #声明num为全局变量
+                     num = 99    #修改
+注意：在开发时，应该把 所有的全局变量 定义在所有函数的上方
+</code></pre></li>
+</ul>
+<ul>
+<li><p>交换两个数字<br>a = 6<br>b = 100<br>解法一：  使用临时变量</p>
+<pre><code>c = b
+b = a
+a = c
+</code></pre><p>解法二： 不使用临时变量</p>
+<pre><code>a = a + b
+b = a - b
+a = a - b
+</code></pre><p>解法三：Python专有，使用元组</p>
+<pre><code>a,b = b,a   (等号右边是一个元组，只是把小括号省略了)
+</code></pre></li>
+<li><p>函数的参数</p>
+</li>
+</ul>
+<ol>
+<li>符号 += ：在Python中，列表变量调用 += 本质上是在执行列表变量的 extend 方法，不会修改变量的引用<br>2.缺省参数：可以给某个参数 指定一个默认值，具有默认值的参数叫做 缺省参数<pre><code>注意：必须保证所有带有默认值的缺省参数在参数列表的末尾
+          再调用函数时，如果有多个缺省参数，需要指定参数名（明确参数的对应关系）
+</code></pre>3.多值参数：需要 一个函数能够处理的参数个数是不确定的时候，可以使用多值参数<pre><code>Python中的两种多值参数
+   1.参数名前增加一个 * 可以接收元组
+   2.参数名前增加两个 * 可以接受字典
+一般在给多值参数命名时，习惯以下两个名字
+    -   *args  ：存放元组参数，前面一个 *
+    -   **kwargs   ：存放字典参数，前面连个**
+ 说明：*args 是arguments的缩写，有变量意义
+          kw 是keyword 的缩写， kwargs 可以记忆 键值对参数
+拆包：传递参数时   * 表示元组   ** 表示字典
+</code></pre></li>
+</ol>
+<ul>
+<li>函数的递归<pre><code>函数自己调用自己
+特点： 函数内部可以调用自己也可以调用其他函数
+代码特点：函数内部的代码是相同的，只是针对参数不同，处理的结果不同
+                 当参数满足一个条件时，函数不在执行（这个非常重要，为递归的出口，否则进入死循环）
+</code></pre></li>
+</ul>
+<h3 id="10-18"><a href="#10-18" class="headerlink" title="10 18"></a>10 18</h3><p>控制台改变颜色<br>格式：print( ‘ \033[显示方式;前景色;背景色m ‘ )</p>
+<p> 说明：<br> 前景色            背景色           颜色<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">30                40              黑色</span><br><span class="line">31                41              红色</span><br><span class="line">32                42              绿色</span><br><span class="line">33                43              黃色</span><br><span class="line">34                44              蓝色</span><br><span class="line">35                45              紫红色</span><br><span class="line">36                46              青蓝色</span><br><span class="line">37                47              白色</span><br></pre></td></tr></table></figure></p>
+<p>显示方式           意义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">0                终端默认设置</span><br><span class="line">1                高亮显示</span><br><span class="line">4                使用下划线</span><br><span class="line">5                闪烁</span><br><span class="line">7                反白显示</span><br><span class="line">8                不可见</span><br></pre></td></tr></table></figure>
+<h3 id="10-20"><a href="#10-20" class="headerlink" title="10 20"></a>10 20</h3><p>面向对象<br>❶封装<br>  1.类和对象：</p>
+<pre><code>类：是一个模板，负责创建对象
+对象：由类创造出来的一个具体存在
+</code></pre><p>  2.类的三要素<br>                 类名：满足大驼峰命名法（每个单词首字母大写，单词与单词之间没有下划线）<br>                 属性：对对象的特征描述<br>                 方法：对象的行为<br>  3.面向对象基础语法：<br>               dir内置函数：dir传入标识符/数据，可以查看内置方法/属性   dir( 标识符/数据 )<br>      <strong><strong>*</strong></strong>  由哪一个对象调用的方法，方法内的 self 就是哪一个对象的引用 –语法：dir(类名)<br>                      在类封装的方法内部，self 就表示 当前地哦啊用方法的对象自己<br>        一个对象的 属性 可以是 另一个 类创建的对象  参考（tj_09_oop案例2.py）<br>  4.身份运算符<br>       比较两个对象的内存地址是否一致 —是否是对同一个对象的引用<br>       x  is  y    类似 id(x) == id (y)<br>       x  not is y  类似   id(x)  != id(y)<br>  5.私有属性和私有方法（不希望公开的）<br>         定义方式：在 属性名或者方法名前增加两个 下划线<br>          如果非要访问：  _类名<strong>名称<br>❷继承（实现代码的重用）<br>       语法：<br>        class 子类（父类）：<br>               pass<br>  1.单继承<br>      子类拥有父类的所有方法和属性<br>  2.多继承<br>       子类拥有多个父类，并且具有所有父类的属性和方法<br>       MRO– 方法搜索顺序：内置属性 </strong>mro__可以查看方法的搜索顺序—-print(类名，<strong>mro</strong>)</p>
+<h3 id="10-21"><a href="#10-21" class="headerlink" title="10 21"></a>10 21</h3><p>❸多态（不同的子类对象调用相同的父类方法，产生不同的执行结果）</p>
+<pre><code>多态可以增加代码的灵活度
+以子类和重写父类的方法为前提
+</code></pre><p>术语—-实例<br>       创建出来的对象叫做类的实例<br>       创建对象的动作叫做实例化<br>       对象的属性叫做实例属性<br>       对象调用的方法叫做实例方法<br>类方法（方法内部字需要访问类属性）<br>    语法：<br>        @classmethod<br>        def  类方法名(cls):<br>                pass</p>
+<p>静态方法(方法内部，不需要访问实例属性和类属性，调用时不需要实例化）<br>     语法：<br>         @staticmethod<br>         def  静态方法名():<br>                pass</p>
+<p>单例<br>   单例设计模式：目的（让创建的对象，在系统中只有唯一的一个实例，每一次执行 类名() 返回的对象，内存地址是相同的）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__new__ 方法：由object 基类提供的内置方法</span><br></pre></td></tr></table></figure></p>
+<p>作用： 在内存中为对象分配空间,返回对象的引用<br>捕获异常<br>语法：  try:<br>                 可能出现异常的代码<br>            except:<br>                 出现异常执行的代码</p>
+<pre><code>捕获未知错误
+        语法：      except  Exception  as  result:
+                                  print(&quot;未知错误 %s&quot;  %result)
+</code></pre><p>捕获异常 完整语法 ：<br>             try:<br>                 可能出现异常的代码<br>             except:<br>                 出现异常执行的代码<br>             except:<br>                 出现异常执行的代码<br>              …<br>              except  Exception  as  result:<br>                          print(“未知错误 %s”  %result)<br>              else:<br>                     没有异常才会执行的代码<br>              finally：<br>                       无论是否异常，都会执行的代</p>
+<h3 id="10-22"><a href="#10-22" class="headerlink" title="10 22"></a>10 22</h3><p>模块<br>   模块的别名</p>
+<pre><code>    语法：  import   模块名  as   别名（大驼峰命名）
+
+form...import （部分工具导入，导入之后调用不需要使用模块名可以直接使用）
+form  模块名  import  工具名 
+注意事项：如果两个模块，存在同名的函数，那么后倒入模块的函数，会覆盖掉先导入的函数
+form...import * (导入所有模块工具）
+ __file__可以查看模块的完整路径 （  print(模块名 . __file__)  ）
+__name__内置属性：测试模块的代码只在测试情况下运行，而在被导入时不会被执行
+</code></pre><p>包<br>     包含多个模块的特殊目录<br>     目录下有一个特殊的文件  <strong>init</strong>.py<br>     包名的命名方式和变量命名一致</p>
+<p>文件操作（1个函数 3个方法）<br>           open            打开文件，并且返回文件操作对象<br>           read             将文件内容读取到内存<br>           write            将指定内容写入文件<br>           close            关闭文件<br>        打开文件演练：<br>                  1.打开（文件名需要注意大小写）<br>                  file = open(“文件名”)<br>                  2.读取<br>                  text = file.read()<br>                  print(text)<br>                  3.关闭<br>                  file.close()<br>eval 函数 ：将字符串当成有效的表达式来求值并返回计算结果</p>
+<p>url<br>统一资源定位符<br>URL基本格式  = 协议://主机地址/路径</p>
+<p>HTTP /HTTPs</p>
+<p>TCP:可靠传输，传输时建立会话<br>UDP:不可靠传输，不会建立会话</p>
+<h3 id="10-23"><a href="#10-23" class="headerlink" title="10 23"></a>10 23</h3><p>进程：正在运行的程序、独立</p>
+<p>线程：一个进程想要执行任务，必须要有线程（每1个进程至少要有1条线程）<br>       进程的所有任务都是在线程中执行的<br>线程的串行<br>1个线程中的任务是串行的</p>
+<ul>
+<li>多线程：1个进程可以开启多条线程，每1条线程可以并行（同时）执行不同的任务</li>
+</ul>
+<p>原理：同一时间，cpu只能处理一条线程，只有1条线程在工作</p>
+<pre><code>多个线程之间来回调度（切换
+</code></pre>
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
+  <div class="random-toc">
+    <h2>目录</h2>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-11"><span class="toc-text">10 11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-12"><span class="toc-text">10 12</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-13"><span class="toc-text">10 13</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-14"><span class="toc-text">10 14</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-15"><span class="toc-text">10 15</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-16"><span class="toc-text">10 16</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-18"><span class="toc-text">10 18</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-20"><span class="toc-text">10 20</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-21"><span class="toc-text">10 21</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-22"><span class="toc-text">10 22</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-23"><span class="toc-text">10 23</span></a></li></ol>
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+    <a href="/2018/12/22/Linux/" class="prev">&larr; 上一篇 Linux常用终端命令</a>
+  
+
+  
+
+  
+    <a href="/2018/12/22/vim编辑器之神/" class="next">下一篇 vim编辑器之神 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by ChongJing001 using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="https://ojlty2hua.qnssl.com/image-1545275902117-NWJhNDNhZWUzMWY2MTM2YzFiNmI2MzI2LmpwZw==.jpg?imageView2/0/q/75|imageslim">
+    <p id="description"></p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/chongjing001">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://blog.csdn.net/qq_42874994">
+        
+          CSND
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.jianshu.com/u/37f4a7a33d19">
+        
+          <i class="icon iconfont jian">&#xe614;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["flash"],"timer":true,"delay":1500000,"shuffle":true,"count":12};
+var unsplashConfig = {"gravity":"center"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+
+var backgroundColor = "34495E";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+

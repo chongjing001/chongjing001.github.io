@@ -16,10 +16,11 @@
   
   
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu...">
+    <meta name="description" content="vim编辑器之神配置vimrc配置在shell中可以通过 vim ~/.vimrc 或者 vim /etc/vimrc 打开vimrc文件对vim进行配置。在这个文件中可以进行很多和vim相关的配置，常用的如下（如果对其他配置感兴趣的可以自己百度）：
+ 
+常用操作1.模式切换我们可以将vim分为命令模式、编辑模式和末行模式三种命令模式：进入vim的时候vim是处于命令模式状态下的，这个时候输...">
   
-  <title>Hello World [ ChongJing001 ]</title>
+  <title>vim编辑器之神 [ ChongJing001 ]</title>
   
   
     <link rel="shortcut icon" href="/hollow.ico">
@@ -39,14 +40,23 @@ Qu...">
 <div class="side-navigate hide-area">
   
     <div class="item prev">
-      <a href="/2018/12/21/ssh免密登陆/">
+      <a href="/2018/12/22/python基础语法/">
         <div class="item-icon"></div>
       </a>
       <div class="item-title">
-        ssh免密登陆及登陆失败后的解决办法
+        python基础语法
       </div>
     </div>
   
+  
+    <div class="item next">
+      <a href="/2018/12/22/Nginx服务器安装/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        Nginx服务器
+      </div>
+    </div>
   
 </div>
 <div id="outer-container" class="hide-area">
@@ -121,11 +131,11 @@ Qu...">
   
 
   <article id="post">
-    <h1>Hello World</h1>
+    <h1>vim编辑器之神</h1>
     <p class="page-title-sub">
-      <span id="post-title-date">撰写于 2018-12-19</span>
+      <span id="post-title-date">撰写于 2018-12-22</span>
       
-        <span id="post-title-updated">修改于 2018-12-21</span>
+        <span id="post-title-updated">修改于 2018-12-22</span>
       
       
       <span id="post-title-categories">分类
@@ -133,7 +143,7 @@ Qu...">
       
         
         
-        <a href="/categories/Diary/">Diary</a>
+        <a href="/categories/vim/">vim</a>
       
       </span>
       
@@ -144,46 +154,49 @@ Qu...">
       
         
         
-        <a href="/tags/Hello/">Hello</a>
-      
-        
-          /
-        
-        
-        <a href="/tags/World/">World</a>
+        <a href="/tags/配置vimrc配置/">配置vimrc配置</a>
       
       </span>
       
     </p>
     
-    <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+    <h1 id="vim编辑器之神"><a href="#vim编辑器之神" class="headerlink" title="vim编辑器之神"></a>vim编辑器之神</h1><h3 id="配置vimrc配置"><a href="#配置vimrc配置" class="headerlink" title="配置vimrc配置"></a>配置vimrc配置</h3><p>在shell中可以通过 <code>vim ~/.vimrc</code> 或者 <code>vim /etc/vimrc</code> 打开vimrc文件对vim进行配置。在这个文件中可以进行很多和vim相关的配置，常用的如下（如果对其他配置感兴趣的可以自己百度）：</p>
+<p><img src="./img/vim1.png" alt=""> </p>
+<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><h4 id="1-模式切换"><a href="#1-模式切换" class="headerlink" title="1.模式切换"></a>1.模式切换</h4><p>我们可以将vim分为命令模式、编辑模式和末行模式三种<br><strong>命令模式：</strong>进入vim的时候vim是处于命令模式状态下的，这个时候输入内容不会出现在编辑区  (最末什么都没有)</p>
+<p><strong>末行模式：</strong>在命令模式下输入冒号，让vim进入末行模式。在末行模式的冒号后面可以输入相关的一些指令进行相关操作  (最后有一个冒号)</p>
+<p><strong>编辑模式：</strong>在命令模式下按’i’进入编辑模式。在编辑模式下可以对文件内容进行编辑 (最后 –INSERT– 或者 –插入–)  </p>
+<p>####2.保存和退出<br>在末行模式下输入相应的指令可以对编辑区的内容进行保存和退出vim界面<br><strong>w</strong> – 只保存(类似快捷键ctr+s)<br><strong>q</strong> – 退出（在编辑区的内容全部都保存的情况下才有效）<br><strong>wq</strong> – 保存并退出<br><strong>q!</strong>  – 强制退出（不保存修改信息）    </p>
+<p>####3.光标操作<br>以下光标操作都是在命令模式下输入的<br><strong>^(shift+6)</strong>  – 移动到行首<br><strong>$(shift+4)</strong>  – 移动到行尾<br><strong>G(shift+g)</strong>    – 移动到文件末尾<br><strong>行号G</strong>            – 移动到指定行,例如:30G, 让光标直接跳转到行号是30的那一行<br><strong>gg</strong>                – 移动到文件开头  </p>
+<p>####4.文本操作<br>以下操作不带冒号的是在命令模式下输入，前面有冒号代码后面的内容是在末行模式下输入<br><strong>dd</strong>            – 删除光标所在的行<br><strong>数字dd</strong>        – 从光标所在行开始往后面开始删，删除指定数量行内容<br><strong>:%d</strong>        – 删除所有     </p>
+<p><strong>yy</strong>         – 复制光标所在的行<br><strong>数字yy</strong>        – 从光标所在行开始复制指定行数的内容<br><strong>p</strong>            – 将复制的内容粘贴到光标所在的位置<br><strong>u</strong>            – 撤销<br><strong>ctr+r</strong>    – 反撤销    </p>
+<p><strong>:%!sort</strong>  – 对内容排序  </p>
+<p><strong>:/查找对象[/gice]</strong>    – 搜索匹配正则表达式的内容，按回车回到命令模式后按n往前查找，按N往后查找  </p>
+<p>*<em>:1,$s/被替换对象/替换内容[/gice</em>]*    – 将正则表达式匹配到的内容替换成指定内容   </p>
+<pre><code>-    g: 全局匹配  
+-     i: 忽略大小写 
+-   c: 替换时需要提示  
+-   e: 忽略错误  
+</code></pre>
   </article>
   <div class="random-toc-area">
   <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">显示目录</button>
   <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">隐藏目录</button>
   <div class="random-toc">
     <h2>目录</h2>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vim编辑器之神"><span class="toc-text">vim编辑器之神</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置vimrc配置"><span class="toc-text">配置vimrc配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用操作"><span class="toc-text">常用操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-模式切换"><span class="toc-text">1.模式切换</span></a></li></ol></li></ol></li></ol>
   </div>
 </div>
 
   
 <nav id="pagination">
   
-    <a href="/2018/12/21/ssh免密登陆/" class="prev">&larr; 上一篇 ssh免密登陆及登陆失败后的解决办法</a>
+    <a href="/2018/12/22/python基础语法/" class="prev">&larr; 上一篇 python基础语法</a>
   
 
   
 
+  
+    <a href="/2018/12/22/Nginx服务器安装/" class="next">下一篇 Nginx服务器 &rarr;</a>
   
 </nav>
 

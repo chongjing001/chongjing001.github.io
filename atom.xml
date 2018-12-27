@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>ChongJing001</title>
+  <title>Never give up</title>
   
-  <subtitle>我是副标题</subtitle>
+  <subtitle>如果有选择，那就选择最好的;如果没有选择，那就努力做到最好</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>

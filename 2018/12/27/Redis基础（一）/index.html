@@ -111,23 +111,18 @@
 
 
 
-  <meta name="description" content="Nginx服务器1.阿里云添加80端口阿里云上默认只有一个22端口用来做远程登录，如果希望在阿里云上安装支持http请求的nginx服务器，需要给阿里云添加80端口  2. 安装nginxa) 添加nginx存储库   1yum install epel-release b) 安装nginx 1yum install nginx c) 运行nginxNginx不会自行启动。要运行Nginx   1">
-<meta name="keywords" content="Nginx">
+  <meta name="description" content="安装Redis1234567891011wget http://download.redis.io/releases/redis-5.0.3.tar.gz解包gunzip redis-5.0.3.tar.gztar -xvf redis-5.0.3.tarcd redis-5.0.3编译gcc --version安装make &amp;amp;&amp;amp; make install 提供高速缓存服务 - 缓">
+<meta name="keywords" content="NoSQL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nginx服务器">
-<meta property="og:url" content="http://yoursite.com/2018/12/22/Nginx服务器安装/index.html">
+<meta property="og:title" content="Redis基础（一）">
+<meta property="og:url" content="http://yoursite.com/2018/12/27/Redis基础（一）/index.html">
 <meta property="og:site_name" content="ChongJing001">
-<meta property="og:description" content="Nginx服务器1.阿里云添加80端口阿里云上默认只有一个22端口用来做远程登录，如果希望在阿里云上安装支持http请求的nginx服务器，需要给阿里云添加80端口  2. 安装nginxa) 添加nginx存储库   1yum install epel-release b) 安装nginx 1yum install nginx c) 运行nginxNginx不会自行启动。要运行Nginx   1">
+<meta property="og:description" content="安装Redis1234567891011wget http://download.redis.io/releases/redis-5.0.3.tar.gz解包gunzip redis-5.0.3.tar.gztar -xvf redis-5.0.3.tarcd redis-5.0.3编译gcc --version安装make &amp;amp;&amp;amp; make install 提供高速缓存服务 - 缓">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/img/aliyun0.png">
-<meta property="og:image" content="http://yoursite.com/img/aliyun2.png">
-<meta property="og:image" content="http://yoursite.com/img/aliyun3.png">
-<meta property="og:image" content="http://yoursite.com/img/aliyun4.png">
-<meta property="og:updated_time" content="2018-12-26T15:00:53.270Z">
+<meta property="og:updated_time" content="2018-12-27T09:32:49.506Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Nginx服务器">
-<meta name="twitter:description" content="Nginx服务器1.阿里云添加80端口阿里云上默认只有一个22端口用来做远程登录，如果希望在阿里云上安装支持http请求的nginx服务器，需要给阿里云添加80端口  2. 安装nginxa) 添加nginx存储库   1yum install epel-release b) 安装nginx 1yum install nginx c) 运行nginxNginx不会自行启动。要运行Nginx   1">
-<meta name="twitter:image" content="http://yoursite.com/img/aliyun0.png">
+<meta name="twitter:title" content="Redis基础（一）">
+<meta name="twitter:description" content="安装Redis1234567891011wget http://download.redis.io/releases/redis-5.0.3.tar.gz解包gunzip redis-5.0.3.tar.gztar -xvf redis-5.0.3.tarcd redis-5.0.3编译gcc --version安装make &amp;amp;&amp;amp; make install 提供高速缓存服务 - 缓">
 
 
 
@@ -136,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/22/Nginx服务器安装/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/27/Redis基础（一）/">
 
 
 
@@ -146,7 +141,7 @@
   };
 </script>
 
-  <title>Nginx服务器 | ChongJing001</title>
+  <title>Redis基础（一） | ChongJing001</title>
   
 
 
@@ -406,7 +401,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/22/Nginx服务器安装/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/27/Redis基础（一）/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ChongJing001">
@@ -423,7 +418,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Nginx服务器
+          <h1 class="post-title" itemprop="name headline">Redis基础（一）
 
               
             
@@ -451,25 +446,9 @@
                 
               
 
-              <time title="创建时间：2018-12-22 11:40:48" itemprop="dateCreated datePublished" datetime="2018-12-22T11:40:48+08:00">2018-12-22</time>
+              <time title="创建时间：2018-12-27 17:32:49" itemprop="dateCreated datePublished" datetime="2018-12-27T17:32:49+08:00">2018-12-27</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-12-26 23:00:53" itemprop="dateModified" datetime="2018-12-26T23:00:53+08:00">2018-12-26</time>
-              
             
           </span>
 
@@ -485,7 +464,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/服务器/" itemprop="url" rel="index"><span itemprop="name">服务器</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
 
                 
                 
@@ -500,8 +479,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/22/Nginx服务器安装/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/22/Nginx服务器安装/" itemprop="commentCount"></span>
+                <a href="/2018/12/27/Redis基础（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/27/Redis基础（一）/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -509,7 +488,7 @@
 
           
           
-             <span id="/2018/12/22/Nginx服务器安装/" class="leancloud_visitors" data-flag-title="Nginx服务器">
+             <span id="/2018/12/27/Redis基础（一）/" class="leancloud_visitors" data-flag-title="Redis基础（一）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -542,31 +521,8 @@
       
 
       
-        <h1 id="Nginx服务器"><a href="#Nginx服务器" class="headerlink" title="Nginx服务器"></a>Nginx服务器</h1><h3 id="1-阿里云添加80端口"><a href="#1-阿里云添加80端口" class="headerlink" title="1.阿里云添加80端口"></a>1.阿里云添加80端口</h3><p>阿里云上默认只有一个22端口用来做远程登录，如果希望在阿里云上安装支持http请求的nginx服务器，需要给阿里云添加80端口</p>
-<p><img src="/img/aliyun0.png" alt="打开安全组设置"><br><img src="/img/aliyun2.png" alt=""><br><img src="/img/aliyun3.png" alt=""><br><img src="/img/aliyun4.png" alt=""></p>
-<h3 id="2-安装nginx"><a href="#2-安装nginx" class="headerlink" title="2. 安装nginx"></a>2. 安装nginx</h3><p>a) 添加nginx存储库  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release</span><br></pre></td></tr></table></figure>
-<p>b) 安装nginx</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx</span><br></pre></td></tr></table></figure>
-<p>c) 运行nginx<br>Nginx不会自行启动。要运行Nginx  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx</span><br></pre></td></tr></table></figure>
-<p>nginx的运行命令:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status nginx 查看nginx的状态  </span><br><span class="line">systemctl start/stop/enable/disable nginx 启动/关闭/设置开机启动/禁止开机启动</span><br></pre></td></tr></table></figure>
-<p>d) 系统启动时启动Nginx  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable nginx</span><br></pre></td></tr></table></figure>
-<p>e）如果您正在运行防火墙，请运行以下命令以允许HTTP和HTTPS通信：   </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --zone=public --add-service=http </span><br><span class="line"></span><br><span class="line">sudo firewall-cmd --permanent --zone=public --add-service=https</span><br><span class="line"></span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-<h3 id="3-nginx目录共享配置"><a href="#3-nginx目录共享配置" class="headerlink" title="3.nginx目录共享配置"></a>3.nginx目录共享配置</h3><p>a) 在contOS目录中确定一个需要共享的文件夹，例如： /home/yuting<br>b) 打开 etc/nginx/nginx.conf 文件，设置server</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#共享设置 - 在浏览器中输入服务器ip地址，会展示共享目录的文件列表</span><br><span class="line">root /home/yuting;</span><br><span class="line">location / &#123;</span><br><span class="line">       autoindex on;</span><br><span class="line">       autoindex_exact_size on;</span><br><span class="line">       autoindex_localtime on;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>除了可以共享文件，还可以自定义页面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#自定义服务器页面</span><br><span class="line">location / &#123;</span><br><span class="line">		root /home/yuting;</span><br><span class="line">		index index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意： 如果出现权限问题，可以修改目录的权限  </p>
-<h1 id="ssh密钥认证"><a href="#ssh密钥认证" class="headerlink" title="ssh密钥认证"></a>ssh密钥认证</h1><p>1.在主机和从机上执行：<code>ssh-keygen</code></p>
-<p>2.在从机上执行:  <code>scp  id_rsa.pub  root@主机地址:~/.ssh/master.pub</code><br>(上面这条指令是将从机上的 id_rsa.pub文件拷贝传递给到主机的.ssh文件夹下，并且命名为’master.pub’)</p>
-<p>3.在主机中的.ssh文件夹中创建authorized_keys文件： <code>touch authorized_keys</code> </p>
-<p>4.修改文件authorized_keys的权限: <code>chmod 600  authorized_keys</code>  </p>
-<p>5.将master.pub放进authorized_keys文件中:  <code>cat master.pub &gt;&gt;  authorized_keys</code></p>
-<p>6.在操作主机的时候，需要主机能够自己免密访问自己就将自己的公钥放在自己的authorized_keys文件中</p>
+        <h4 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-5.0.3.tar.gz</span><br><span class="line"></span><br><span class="line">解包</span><br><span class="line">gunzip redis-5.0.3.tar.gz</span><br><span class="line">tar -xvf redis-5.0.3.tar</span><br><span class="line"></span><br><span class="line">cd redis-5.0.3</span><br><span class="line">编译</span><br><span class="line">gcc --version</span><br><span class="line">安装</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p><strong>提供高速缓存服务 - 缓存热点数据（访问量大数据不大）</strong><br><strong>缓解了数据的压力（高频访问数据不用直接访问数据库）</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">启动：</span><br><span class="line">redis-server --requirepass 123456 --appendonly yes &gt; redis.log 2&gt; redis-error.log &amp;</span><br><span class="line"></span><br><span class="line">连接自己的redis</span><br><span class="line">redis -cli -h ip -p 端口</span><br><span class="line">密码：auth 123456</span><br><span class="line">auth - 验证身份</span><br><span class="line">ping - 心跳时间</span><br><span class="line"></span><br><span class="line">set  - 设置键值对</span><br><span class="line">git  - 取值</span><br><span class="line"></span><br><span class="line">expire - 设置超时时间</span><br><span class="line">ttl 内容 - 查看剩余存活时间  -1 永久  -2 超时  - 正整数 剩余时间</span><br><span class="line">keys * 查看所有键</span><br><span class="line"></span><br><span class="line">flushdb  - 清空数据库中所有键值对</span><br><span class="line">flushall - 清除所有数据库中的所有键值对</span><br><span class="line"></span><br><span class="line">existis 判断是否存在</span><br><span class="line">select 序号（默认有16库） 切换数据库</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">save / bgsave - 保存数据 / 后台保存数据</span><br><span class="line">shutdown - 关闭服务器</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Redis提供两种持久化数据的方案：</span><br><span class="line">1. RDB - 默认开启</span><br><span class="line">2. AOF - 默认关闭 -- appendonly yes</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -610,7 +566,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Nginx/" rel="tag"><i class="fa fa-tag"></i> Nginx</a>
+            <a href="/tags/NoSQL/" rel="tag"><i class="fa fa-tag"></i> NoSQL</a>
           
         </div>
       
@@ -623,8 +579,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/22/git常用指令/" rel="next" title="git常用指令">
-                <i class="fa fa-chevron-left"></i> git常用指令
+              <a href="/2018/12/27/MySQL安装(Linux系统)/" rel="next" title="MySQL安装(Linux系统)">
+                <i class="fa fa-chevron-left"></i> MySQL安装(Linux系统)
               </a>
             
           </div>
@@ -633,8 +589,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/22/vim编辑器之神/" rel="prev" title="vim编辑器之神">
-                vim编辑器之神 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/27/MySQL基本使用(一)/" rel="prev" title="MySQL基本使用(一)">
+                MySQL基本使用(一) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -947,7 +903,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx服务器"><span class="nav-number">1.</span> <span class="nav-text">Nginx服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-阿里云添加80端口"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.阿里云添加80端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装nginx"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 安装nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-nginx目录共享配置"><span class="nav-number">1.0.3.</span> <span class="nav-text">3.nginx目录共享配置</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh密钥认证"><span class="nav-number">2.</span> <span class="nav-text">ssh密钥认证</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装Redis"><span class="nav-number">1.</span> <span class="nav-text">安装Redis</span></a></li></ol></div>
             
 
           </div>

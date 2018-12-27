@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/aaa.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/aaa.ico?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","width":400,"display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"expandIn","post_body":"slideDownIn","coll_header":"slideDownBigOut","sidebar":"bounceOut"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、正则基本符号 1.什么是正则表达式正则表达式就是字符匹配的工具;是由正则符号和普通字符组成，来匹配不同规律的字符串  2.Python对正则表达式的支持python中提供了一个re模块，用来支持正则表达式  fullmatch(正则表达式, 字符串) - 用正则表达式去完全匹配字符串，如果匹配成功返回匹配结果，失败返回Nonepython中的正则表达式的写法：将正则内容写在字符串中，一般这个字">
+<meta name="keywords" content="正则">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="http://yoursite.com/2018/12/26/正则表达式/index.html">
+<meta property="og:site_name" content="ChongJing001">
+<meta property="og:description" content="一、正则基本符号 1.什么是正则表达式正则表达式就是字符匹配的工具;是由正则符号和普通字符组成，来匹配不同规律的字符串  2.Python对正则表达式的支持python中提供了一个re模块，用来支持正则表达式  fullmatch(正则表达式, 字符串) - 用正则表达式去完全匹配字符串，如果匹配成功返回匹配结果，失败返回Nonepython中的正则表达式的写法：将正则内容写在字符串中，一般这个字">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-26T15:11:16.106Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式">
+<meta name="twitter:description" content="一、正则基本符号 1.什么是正则表达式正则表达式就是字符匹配的工具;是由正则符号和普通字符组成，来匹配不同规律的字符串  2.Python对正则表达式的支持python中提供了一个re模块，用来支持正则表达式  fullmatch(正则表达式, 字符串) - 用正则表达式去完全匹配字符串，如果匹配成功返回匹配结果，失败返回Nonepython中的正则表达式的写法：将正则内容写在字符串中，一般这个字">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ChongJing001" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/26/正则表达式/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>正则表达式 | ChongJing001</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b544a5824250d3f0f88f927aa16471d2s";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/chongjing001"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ChongJing001</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">我是副标题</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/26/正则表达式/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChongJing001">
+      <meta itemprop="description" content="我是描述">
+      <meta itemprop="image" content="http://pk0mla8df.bkt.clouddn.com/5467272669401b07185e3c28.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChongJing001">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">正则表达式
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+		
+          <span class="post-time">
+			
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-26 23:11:16" itemprop="dateCreated datePublished" datetime="2018-12-26T23:11:16+08:00">2018-12-26</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/26/正则表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/26/正则表达式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/12/26/正则表达式/" class="leancloud_visitors" data-flag-title="正则表达式">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 
+             </span>
+			 
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="一、正则基本符号"><a href="#一、正则基本符号" class="headerlink" title="一、正则基本符号"></a>一、正则基本符号</h4><ul>
+<li><p>1.什么是正则表达式<br>正则表达式就是字符匹配的工具;是由正则符号和普通字符组成，来匹配不同规律的字符串</p>
+</li>
+<li><p>2.Python对正则表达式的支持<br>python中提供了一个re模块，用来支持正则表达式</p>
+</li>
+<li><p>fullmatch(正则表达式, 字符串) - 用正则表达式去完全匹配字符串，如果匹配成功返回匹配结果，失败返回None<br>python中的正则表达式的写法：将正则内容写在字符串中，一般这个字符串的最前面会r/R</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1  普通字符</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">普通字符在正则表达式中，代表字符本身</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># 匹配一个字符串，第一个字符是'a',第二个字符是'b',第三个字符也是最后一个字符是'c'</span></span><br><span class="line">re_str = <span class="string">r'abc'</span></span><br><span class="line">result = re.fullmatch(re_str, <span class="string">'abc'</span>)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2 .(匹配任意字符)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">在正则表达式中，.出现的位置，可以匹配一个任意字符</span></span><br><span class="line"><span class="string">注意：一个.只能匹配一个字符</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># 匹配一个长度上3的字符串，并且第一个字符是'a',最后一个字符是'c',中间是任意字符</span></span><br><span class="line">re_str = <span class="string">r'a.c'</span></span><br><span class="line">result = re.fullmatch(re_str, <span class="string">'a#c'</span>)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3 \w(匹配字母数字或者下划线)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">在正则表达式中，\w出现的位置，可以匹配一个任意的字母、数字或者下划线(其实也可以匹配Unicode编码中除了ASCII码剩下的部分)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">注意：</span></span><br><span class="line"><span class="string">一个\w只能匹配一个字符</span></span><br><span class="line"><span class="string">中文也能匹配</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># 匹配一个长度是5的字符串，并且字符串的前两位是数字、字母和下划线，后面是三个任意字符</span></span><br><span class="line">re_str = <span class="string">r'\w\w...'</span></span><br><span class="line">result = re.fullmatch(re_str, <span class="string">'_好kll'</span>)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4 \s(匹配空白字符)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">空白字符包括：空格、制表符和换行符(空格,\t,\r,\n)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># 匹配一个长度是4的字符串，并且字符串前两位是字母数字或者下划线(中文),中间一个空白，再一个字母数字或者下划线(中文)</span></span><br><span class="line">re_str = <span class="string">r'\w\w\s\w'</span></span><br><span class="line">result = re.fullmatch(re_str, <span class="string">'hj\t8'</span>)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5 \d(匹配数字字符)</span></span><br><span class="line"><span class="comment"># 匹配一个长度是5的字符串，字符串的前三位是数字字符，后两位是任意字符</span></span><br><span class="line">re_str = <span class="string">'\d\d\d..'</span></span><br><span class="line">result = re.fullmatch(re_str, <span class="string">'082de'</span>)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 6 \b(检测单词边界)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">注意：检测\b出现的位置是否是单词边界，不会对字符进行匹配。</span></span><br><span class="line"><span class="string">     当正则表达式中出现了\b，匹配的时候去掉\b，匹配成功后再看\b出现的位置是否是单词边界</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">单词边界：字符串开头、字符串结尾、标点符号、空白符号等（只要能够将单词区分开的符号都属于单词边界）</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># 匹配字符串'hello,world', 并且要求w前面是单词边界, h前面也是单词边界</span></span><br><span class="line">re_str = <span class="string">r'\bhello,\bworld'</span></span><br><span class="line">result = re.fullmatch(re_str, <span class="string">'hello,world'</span>)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">3</span>), match=<span class="string">'abc'</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">3</span>), match=<span class="string">'a#c'</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">5</span>), match=<span class="string">'_好kll'</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">4</span>), match=<span class="string">'hj\t8'</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">5</span>), match=<span class="string">'082de'</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">11</span>), match=<span class="string">'hello,world'</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>7 ^(检测字符串开头)<br>在match和fullmatch中没有意义, search、findall等中有意义</p>
+</li>
+<li><p>8 $(检测字符串结尾</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 匹配一个字符串，只有三位，分别是'The',并且e后面是字符串结尾</span></span><br><span class="line">re_str = <span class="string">r'The'</span></span><br><span class="line">result = re.fullmatch(re_str, <span class="string">'The'</span>)</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>9 \大写字母</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">'\大写字母'对应的功能是'\小写字母'功能取反</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">\W - 匹配非数字字母下划线</span></span><br><span class="line"><span class="string">\D - 匹配非数字字符</span></span><br><span class="line"><span class="string">\S - 匹配非空白字符</span></span><br><span class="line"><span class="string">\B - 检测非单词边界</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># 匹配一个字符串，第一个字符是数字、第二个是非数字,第三个是空白，第四个是数字字母下划线，最后一个是a;</span></span><br><span class="line"><span class="comment"># 并且要求a前面不是单词边界</span></span><br><span class="line">re_str = <span class="string">r'\d\D\s\w\Ba'</span></span><br><span class="line">result = re.fullmatch(re_str, <span class="string">'9H\t_a'</span>)</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>10 <a href="匹配中括号出现的任意一个字符">字符集</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">1.[普通字符集] - 匹配中括号出现的任意一个字符</span></span><br><span class="line"><span class="string">例如：[abc] - 匹配一个字符是a或者b或者c</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">注意：a.一个中括号只能匹配一个字符</span></span><br><span class="line"><span class="string">     b.正则中有特殊功能的单个符号在[]都表示符号本身 例如：.  $  ^ + * ？ |等</span></span><br><span class="line"><span class="string">     c.匹配字符的组合符号，在中括号中保持原来的功能, 例如: \w  \d \s  \W  \D \S</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># 匹配一个长度是2的字符串，第一个字符是数字，第二个字符是b或者c或者=或者数字</span></span><br><span class="line">re_str = <span class="string">r'\d[bc=\d]'</span></span><br><span class="line">result = re.fullmatch(re_str, <span class="string">'24'</span>)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">2.[字符1-字符2] - 表示字符1到字符2（注意：要求字符1的编码值要小于字符2）</span></span><br><span class="line"><span class="string">[a-z]  - 表示匹配所有小写字母</span></span><br><span class="line"><span class="string">[A-Z]  - 表示匹配所有大写字母</span></span><br><span class="line"><span class="string">[a-zA-Z] - 匹配所有的字母</span></span><br><span class="line"><span class="string">[1-7] - 匹配数字字符1到7</span></span><br><span class="line"><span class="string">[\u4e00-\u9fa5] - 匹配所有的中文</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[字符1字符2-] - 这儿的-表示减号本身</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># 匹配一个长度是3的字符串,第一个字符是数字字符1到7中的一个，</span></span><br><span class="line"><span class="comment"># 第二个字符是'a'，'b','c','-'中的一个,第三个字符是小写字母</span></span><br><span class="line">re_str = <span class="string">r'[1-7][abc-][a-z]'</span></span><br><span class="line">result = re.fullmatch(re_str, <span class="string">'6-z'</span>)</span><br><span class="line">print(result)</span><br><span class="line">&gt;&gt;&gt;&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">3</span>), match=<span class="string">'6-z'</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>11 [^字符集] - 匹配不在字符集中的任意一个字符</p>
+<blockquote>
+<p>[^abc] - 匹配除了’a’,’b’,’c’以外的其他任意一个字符<br>[^\d] - 匹配除了数字字符以外的其他任意一个字符<br>[^a-z] - 匹配除了小写字母以外的其他任意一个字符 </p>
+</blockquote>
+</li>
+</ul>
+<p>[abc^] - 匹配’a’,’b’,’c’或者’^’中的任意一个字符<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">re_str = <span class="string">r'[^a-z]'</span></span><br><span class="line">result = re.fullmatch(re_str, <span class="string">'是'</span>)</span><br><span class="line">print(result)</span><br><span class="line">&gt;&gt;&gt;&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">1</span>), match=<span class="string">'是'</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="二、正则控制匹配次数"><a href="#二、正则控制匹配次数" class="headerlink" title="二、正则控制匹配次数"></a>二、正则控制匹配次数</h4><ul>
+<li><p>1 *(匹配0次或者多次)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">a* - a出现<span class="number">0</span>次或者多次, <span class="string">''</span>,<span class="string">'a'</span>,<span class="string">'aa'</span>, <span class="string">'aaa'</span>...都可以匹配</span><br><span class="line">\d* - 任意数字出现<span class="number">0</span>次或者多次， <span class="string">''</span>,<span class="string">'1'</span>,<span class="string">'12'</span>, <span class="string">'3772'</span>...都可以匹配</span><br><span class="line">[abc]* - a，b或者c出现<span class="number">0</span>次或者多次</span><br><span class="line">[A-F]* - A到F中任意字符出现<span class="number">0</span>次或者多次</span><br><span class="line"></span><br><span class="line">注意：在[]外面的*的前面需要一个字符或者一个匹配字符的符号</span><br><span class="line">print(re.fullmatch(<span class="string">r'a*b'</span>, <span class="string">'aaaaaaaaaab'</span>))</span><br><span class="line">print(re.fullmatch(<span class="string">r'[abc]*'</span>, <span class="string">'aabc'</span>))</span><br><span class="line">print(re.fullmatch(<span class="string">r"[afadsaf]*"</span>,<span class="string">""</span>))</span><br><span class="line">&gt;&gt;&gt;&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">11</span>), match=<span class="string">'aaaaaaaaaab'</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">4</span>), match=<span class="string">'aabc'</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">0</span>), match=<span class="string">''</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2 </p>
+</li>
+<li><p>+(匹配1次或者多次)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">a+ - a至少出现一次</span></span><br><span class="line"><span class="string">\d+ - 数字至少出现一次</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">print(re.fullmatch(<span class="string">r'a+b'</span>, <span class="string">'ab'</span>))</span><br><span class="line">&gt;&gt;&gt;&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">2</span>), match=<span class="string">'ab'</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>?(匹配0次或者1次)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">a? - a出现0次或者1次, '', 'a'可以匹配</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># 写一个正则表达式匹配一个整数（正整数和负整数都可以），例如：123， 10， +100， -1234，</span></span><br><span class="line">re_str = <span class="string">r'[-+]?[1-9]\d*'</span></span><br><span class="line">print(re.fullmatch(re_str, <span class="string">'-12'</span>))</span><br><span class="line">&gt;&gt;&gt;&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">3</span>), match=<span class="string">'-12'</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>{}</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">&#123;N&#125; - 匹配N次,  例如： a&#123;3&#125;，匹配三个'a'</span></span><br><span class="line"><span class="string">&#123;M,N&#125; - 匹配M到N次,   例如： a&#123;3, 5&#125;，匹配三个'a' 或者4个'a'或者5个'a'</span></span><br><span class="line"><span class="string">&#123;,N&#125; - 最多匹配N次(0~N)   例如：a&#123;,3&#125;，'','a', 'aa', 'aaa' </span></span><br><span class="line"><span class="string">&#123;M,&#125; - 至少匹配M次   例如：a&#123;3,&#125; , 'aaa', 'aaaa', 'aaaaa'...</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">print(re.fullmatch(<span class="string">r'a&#123;3,&#125;'</span>, <span class="string">'aaa'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 练习：输入密码，要求检查密码输入是否合格(密码由字母和数字组成，数字不开头，6-12位)。给出提示</span></span><br><span class="line">password = input(<span class="string">'密码:'</span>)</span><br><span class="line">re_str = <span class="string">r'[a-zA-Z][\da-zA-Z]&#123;5,11&#125;'</span></span><br><span class="line">result = re.fullmatch(re_str, password)</span><br><span class="line"><span class="keyword">if</span> result:</span><br><span class="line">    print(<span class="string">'输入成功！'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'输入有误！'</span>)</span><br><span class="line">&gt;&gt;&gt;&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">3</span>), match=<span class="string">'aaa'</span>&gt;</span><br><span class="line">密码:<span class="number">4</span>f5s4afd46as</span><br><span class="line">输入有误！</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>三、分之、捕获和贪婪</p>
+<h5 id="1-分之"><a href="#1-分之" class="headerlink" title="1.分之"></a>1.分之</h5><ul>
+<li>条件1 | 条件2  - 匹配条件1或者条件2<br>\d{2}|[a-z] - 匹配两个数字字符或者一个小写字母<br>a\d{2}|\w{2} - 匹配一个a后面两个数字，或者两个数字字母下划线</li>
+</ul>
+<p>注意：正则中的分之也会出现短路，当条件1可以匹配，就不会再使用条件2进行匹配<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">print(re.fullmatch(<span class="string">r'\d&#123;2&#125;|[a-z]'</span>, <span class="string">'z'</span>))</span><br><span class="line">print(re.fullmatch(<span class="string">r'a\d&#123;2&#125;|\w&#123;2&#125;'</span>, <span class="string">'sh'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 练习：写一个正则表达式，匹配所有的数字,包括正的、负的，整数，小数，0</span></span><br><span class="line"><span class="comment"># 例如：100, +100, -100, 12.5, -12.5, 0, 0.23, 0.012</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">12, 12.34 : [+-]?[1-9]\d*[.]?\d*</span></span><br><span class="line"><span class="string">0.123 : [+-]?0[.]\d+</span></span><br><span class="line"><span class="string">0 : 0</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">re_str = <span class="string">r'[-+]?[1-9]\d*[.]?\d*|[+-]?0[.]\d+|0'</span></span><br><span class="line">print(re.fullmatch(re_str, <span class="string">'-0.02'</span>))</span><br><span class="line">&gt;&gt;&gt;&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">5</span>), match=<span class="string">'-0.02'</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<h5 id="2-捕获和分组"><a href="#2-捕获和分组" class="headerlink" title="2 () - 捕获和分组"></a>2 () - 捕获和分组</h5><ul>
+<li><p>a.分组 - 将括号中的内容作为一个整体</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 匹配一个字符串，前三位是'abc',后三位是三个数字或者三个大写字母</span></span><br><span class="line">re_str1 = <span class="string">r'abc\d&#123;3&#125;|abc[A-Z]&#123;3&#125;'</span></span><br><span class="line">re_str2 = <span class="string">r'abc(\d&#123;3&#125;|[A-Z]&#123;3&#125;)'</span></span><br><span class="line">print(re.fullmatch(re_str2, <span class="string">'abc123'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配一个字符串，以'数字小写字母'的形式出现3次</span></span><br><span class="line">re_str = <span class="string">r'(\d[a-z])&#123;3&#125;'</span></span><br><span class="line">print(re.fullmatch(re_str, <span class="string">'2s3f4h'</span>))</span><br><span class="line">&gt;&gt;&gt;&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">6</span>), match=<span class="string">'abc123'</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">6</span>), match=<span class="string">'2s3f4h'</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>b 捕获<br>通过正则获取符合条件的子串的时候，可以在正则表达式中加括号，匹配后只获取括号里面匹配到的内容</p>
+</li>
+</ul>
+<p>re.findall(正则表达式，字符串) - 在字符串中去获取符合正则表达式条件的所有的子串,返回一个列表<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str1 = <span class="string">'ahsa783+sdh*92dfjhjj78jhsda67jk'</span></span><br><span class="line">print(re.findall(<span class="string">r'a(\d+)'</span>, str1))     <span class="comment"># ['783', '67']</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>c 重复匹配<br>带多个分组的正则表达式中可以分组的后面通过添加’\数字’来重复前面第几个分组中匹配到的内容</li>
+</ul>
+<p>说明：\数字 - 这儿的数字代表前面第几个分组; \1代表第一个分组  \2代表第二个分组</p>
+<h5 id="3-贪婪"><a href="#3-贪婪" class="headerlink" title="3.贪婪"></a>3.贪婪</h5><ul>
+<li>匹配次数后加?就是贪婪匹配：*?, +?, ??, {M,N}?, {M,}? 表示尽可能少的重复<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">re_str = <span class="string">'a.+?b'</span></span><br><span class="line">re_str2 = <span class="string">'a.+b'</span>  <span class="comment"># 不使用贪婪</span></span><br><span class="line">str1 = <span class="string">'xxxahdjbnnkbsssammmbkkk'</span></span><br><span class="line">print(re.findall(re_str2,str1))</span><br><span class="line">print(re.findall(re_str, str1))</span><br><span class="line">&gt;&gt;&gt;&gt;</span><br><span class="line">[<span class="string">'ahdjbnnkbsssammmb'</span>]</span><br><span class="line">[<span class="string">'ahdjb'</span>, <span class="string">'ammmb'</span>]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="4-转义符号"><a href="#4-转义符号" class="headerlink" title="4.转义符号"></a>4.转义符号</h4><ul>
+<li><p>在正则表达式中可以在有特殊意义或者特殊功能的符号前加\来取消其特殊功能<br>\w  - 代表两个字符，分别是’\’和w<br>+ - 代表+字符<br>* - 代表*字符<br>\? - 代表?字符<br>[], (), {}表示字符的时候，前面也要加\</p>
+</li>
+<li><p>注意：在中括号中, \必须加\表示\本身，^在最前面加\表示^本身， 在两个字符之间加\表示-本身</p>
+<h4 id="四、re模块"><a href="#四、re模块" class="headerlink" title="四、re模块"></a>四、re模块</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.compile(了解)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">compile(正则表达式) - 将正则表达式转换成正则表达式对象</span></span><br><span class="line"><span class="string">转换成对象后可以通过对象调用对象方法</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">re_str = <span class="string">'\d&#123;3&#125;'</span></span><br><span class="line">re_obj = re.compile(re_str)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用模块中的函数</span></span><br><span class="line">print(re.fullmatch(re_str, <span class="string">'234'</span>))</span><br><span class="line"><span class="comment"># 调用对象方法</span></span><br><span class="line">print(re_obj.fullmatch(<span class="string">'234'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.match和fullmatch</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">a. fullmatch(正则表达式, 字符串) - 完全匹配，从字符串开头匹配到字符串结束</span></span><br><span class="line"><span class="string">b. match(正则表达式, 字符串) - 不完全匹配，只匹配字符串开头</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">匹配成功返回匹配对象，匹配失败返回None</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">re_str = <span class="string">r'\d([A-Z]&#123;2&#125;)'</span></span><br><span class="line">result1 = re.fullmatch(re_str, <span class="string">'2HK'</span>)</span><br><span class="line">print(result1)</span><br><span class="line"></span><br><span class="line">result2 = re.match(re_str, <span class="string">'8KLsjdddd=='</span>)</span><br><span class="line">print(result2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配对象</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">1.span - 匹配到的内容的范围，(开始下标, 结束下标), 结束下标取不到</span></span><br><span class="line"><span class="string">匹配对象.span()  - 获取整个正则表达式匹配到的范围</span></span><br><span class="line"><span class="string">匹配对象.span(n) - 获取正则表达式中第n个分组匹配到的范围(前提是有分组)</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">print(result2.span())</span><br><span class="line">print(result2.span(<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">2.start和end - 获取匹配结果的开始下标和结束下标</span></span><br><span class="line"><span class="string">匹配对象.start()/匹配对象.end() - 获取整个正则表达式匹配到的开始下标/结束下标</span></span><br><span class="line"><span class="string">匹配对象.start(n)/匹配对象.end(n) - 获取正则表达式中第n个分组匹配到的开始/结束下标</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">print(result2.start(), result2.end())</span><br><span class="line">print(result2.start(<span class="number">1</span>), result2.end(<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">3.group - 获取匹配到的内容</span></span><br><span class="line"><span class="string">匹配对象.group() - 获取整个正则表达式匹配到的内容</span></span><br><span class="line"><span class="string">匹配对象.group(n) - 获取正则表达式中第n个分组匹配到的内容</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">print(result2.group())</span><br><span class="line">print(result2.group(<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">4. string - 获取用来匹配的原字符串</span></span><br><span class="line"><span class="string">匹配对象.string</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">print(result2.string)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.search</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">search(正则表达式, 字符串) - 匹配字符串中第一个满足正则表达式的子串，如果匹配成功返回匹配对象否则返回None            </span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">str1 = <span class="string">'abc123hks362shjjk990kll'</span></span><br><span class="line">result = re.search(<span class="string">r'\d&#123;3&#125;[a-z]&#123;2&#125;'</span>, str1)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.split</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">split(正则表达式, 字符串) - 在字符串中按照满足正则表达式条件的子串对字符串进行切割, 返回一个列表</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">str1 = <span class="string">'ab+c7hdjd8jss-sk9sjj78s9kk*k'</span></span><br><span class="line">result = re.split(<span class="string">r'\d+|[+*-]+'</span>, str1)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 5.sub</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">sub(正则表达式, 新子串, 字符串) - 用新子串替换字符串中满足正则表达式的子串，返回一个替换后的字符串</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">str1 = <span class="string">'你丫是傻    叉吗? 我操你大爷的. F u c k you.'</span></span><br><span class="line">result = re.sub(<span class="string">r'[丫操艹]|F\s*u\s*c\s*k|傻\s*叉'</span>, <span class="string">'*'</span>, str1)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 6.findall</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">findall(正则表达式, 字符串) - 在字符串中获取满足正则表达式的所有的字符，返回一个列表，列表元素是字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">注意：如果这个正则表达式中有一个分组，结果是列表中只那个分组匹配到的结果</span></span><br><span class="line"><span class="string">     如果这个正则表达式中分组的个数大于1，结果是一个列表，列表中的元素是元祖，元祖中是每个分组匹配到的内容</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">str1 = <span class="string">'haja37jjkd89sdhs909nnna238==='</span></span><br><span class="line">result = re.findall(<span class="string">r'[a-zA-Z]&#123;2,&#125;(\d+)([a-z]+?)'</span>, str1)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7.finditer</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">finditer(正则表达式, 字符串) - 获取字符串中满足正则表达式的内容，返回的是一个迭代器，迭代器中的元素是匹配对象</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">result = re.finditer(<span class="string">r'[a-zA-Z]&#123;2,&#125;(\d+)([a-z]+?)'</span>, str1)</span><br><span class="line">print(result)</span><br><span class="line">print(next(result))</span><br><span class="line">print(next(result))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 思考：写一个自己finditer</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">yt_finditer</span><span class="params">(pattern, string)</span>:</span></span><br><span class="line">    re1 = re.search(pattern, string)</span><br><span class="line">    <span class="keyword">while</span> re1:</span><br><span class="line">        <span class="keyword">yield</span> re1</span><br><span class="line">        string = string[re1.end():]</span><br><span class="line">        re1 = re.search(pattern, string)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(<span class="string">'============'</span>)</span><br><span class="line">result = yt_finditer(<span class="string">r'[a-zA-Z]&#123;2,&#125;(\d+)([a-z]+?)'</span>, str1)</span><br><span class="line">print(next(result))</span><br><span class="line">print(next(result))</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">3</span>), match=<span class="string">'234'</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">3</span>), match=<span class="string">'234'</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">3</span>), match=<span class="string">'2HK'</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">3</span>), match=<span class="string">'8KL'</span>&gt;</span><br><span class="line">(<span class="number">0</span>, <span class="number">3</span>)</span><br><span class="line">(<span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line"><span class="number">0</span> <span class="number">3</span></span><br><span class="line"><span class="number">1</span> <span class="number">3</span></span><br><span class="line"><span class="number">8</span>KL</span><br><span class="line">KL</span><br><span class="line"><span class="number">8</span>KLsjdddd==</span><br><span class="line">&lt;re.Match object; span=(<span class="number">3</span>, <span class="number">8</span>), match=<span class="string">'123hk'</span>&gt;</span><br><span class="line">[<span class="string">'ab'</span>, <span class="string">'c'</span>, <span class="string">'hdjd'</span>, <span class="string">'jss'</span>, <span class="string">'sk'</span>, <span class="string">'sjj'</span>, <span class="string">'s'</span>, <span class="string">'kk'</span>, <span class="string">'k'</span>]</span><br><span class="line">你*是*吗? 我*你大爷的. * you.</span><br><span class="line">[(<span class="string">'37'</span>, <span class="string">'j'</span>), (<span class="string">'89'</span>, <span class="string">'s'</span>), (<span class="string">'909'</span>, <span class="string">'n'</span>)]</span><br><span class="line">&lt;callable_iterator object at <span class="number">0x0000022B3679DEF0</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">7</span>), match=<span class="string">'haja37j'</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">7</span>, <span class="number">13</span>), match=<span class="string">'jkd89s'</span>&gt;</span><br><span class="line">============</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">7</span>), match=<span class="string">'haja37j'</span>&gt;</span><br><span class="line">&lt;re.Match object; span=(<span class="number">0</span>, <span class="number">6</span>), match=<span class="string">'jkd89s'</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>下面为常用正则表达式</strong></p>
+<h2 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h2>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+	
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+	  
+	</div>
+	
+	<div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/正则/" rel="tag"><i class="fa fa-tag"></i> 正则</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/26/网络编程 - socket编程/" rel="next" title="网络编程-socket">
+                <i class="fa fa-chevron-left"></i> 网络编程-socket
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/27/MySQL安装(Linux系统)/" rel="prev" title="MySQL安装(Linux系统)">
+                MySQL安装(Linux系统) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://pk0mla8df.bkt.clouddn.com/5467272669401b07185e3c28.jpg" alt="ChongJing001">
+            
+              <p class="site-author-name" itemprop="name">ChongJing001</p>
+              <p class="site-description motion-element" itemprop="description">我是描述</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/chongjing001" title="GitHub &rarr; https://github.com/chongjing001" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://blog.csdn.net/qq_42874994" title="CSND &rarr; https://blog.csdn.net/qq_42874994" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>CSND</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/37f4a7a33d19" title="简书 &rarr; https://www.jianshu.com/u/37f4a7a33d19" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com" title="微博 &rarr; http://weibo.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.facebook.com" title="facebook &rarr; https://www.facebook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>facebook</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:yourname@gmail.com" title="E-Mail &rarr; mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://plus.google.com/yourname" title="Google &rarr; https://plus.google.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://youtube.com/yourname" title="YouTube &rarr; https://youtube.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.uisdc.com/" title="http://www.uisdc.com/" rel="noopener" target="_blank">优设</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://smallpdf.com/cn" title="https://smallpdf.com/cn" rel="noopener" target="_blank">FPD转化</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="https://www.liaoxuefeng.com/" rel="noopener" target="_blank">廖雪峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="http://www.alloyteam.com/nav/" rel="noopener" target="_blank">Web前端导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.36zhen.com/t?id=3448" title="http://www.36zhen.com/t?id=3448" rel="noopener" target="_blank">前端书籍资料</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wf.uisdc.com/cn/" title="http://wf.uisdc.com/cn/" rel="noopener" target="_blank">google前端开发基础</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ip138.com/ips1388.asp" title="http://www.ip138.com/ips1388.asp" rel="noopener" target="_blank">IP查询</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、正则基本符号"><span class="nav-number">1.</span> <span class="nav-text">一、正则基本符号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、正则控制匹配次数"><span class="nav-number">2.</span> <span class="nav-text">二、正则控制匹配次数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-分之"><span class="nav-number">2.1.</span> <span class="nav-text">1.分之</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-捕获和分组"><span class="nav-number">2.2.</span> <span class="nav-text">2 () - 捕获和分组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-贪婪"><span class="nav-number">2.3.</span> <span class="nav-text">3.贪婪</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-转义符号"><span class="nav-number">3.</span> <span class="nav-text">4.转义符号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、re模块"><span class="nav-number">4.</span> <span class="nav-text">四、re模块</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#待续…"><span class="nav-number"></span> <span class="nav-text">待续…</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">true</span>
+  
+  
+  
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="255,255,0" opacity="0.6" zindex="-1" count="200" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '2LmF6sVQMWHEBU8CPfn2wciU-gzGzoHsz',
+        appKey: 'AvEqQS2iaddiVb0el5sqMFum',
+        placeholder: 'en~ヾﾉ≧∀≦)o',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+  
+  
+  <script type="text/javascript" color="0,0,255" opacity="0.7" zindex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

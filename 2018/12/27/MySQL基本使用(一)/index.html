@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-corner-indicator.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/aaa.ico?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/aaa.ico?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","width":400,"display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"expandIn","post_body":"slideDownIn","coll_header":"slideDownBigOut","sidebar":"bounceOut"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="MySQL建库和建表1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991">
+<meta name="keywords" content="SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL基本使用(一)">
+<meta property="og:url" content="http://yoursite.com/2018/12/27/MySQL基本使用(一)/index.html">
+<meta property="og:site_name" content="ChongJing001">
+<meta property="og:description" content="MySQL建库和建表1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-27T09:50:49.990Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL基本使用(一)">
+<meta name="twitter:description" content="MySQL建库和建表1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798991">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ChongJing001" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/27/MySQL基本使用(一)/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>MySQL基本使用(一) | ChongJing001</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b544a5824250d3f0f88f927aa16471d2s";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/chongjing001"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ChongJing001</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">我是副标题</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/27/MySQL基本使用(一)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ChongJing001">
+      <meta itemprop="description" content="我是描述">
+      <meta itemprop="image" content="http://pk0mla8df.bkt.clouddn.com/5467272669401b07185e3c28.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChongJing001">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL基本使用(一)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+		
+          <span class="post-time">
+			
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-27 17:50:49" itemprop="dateCreated datePublished" datetime="2018-12-27T17:50:49+08:00">2018-12-27</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/27/MySQL基本使用(一)/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2018/12/27/MySQL基本使用(一)/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/12/27/MySQL基本使用(一)/" class="leancloud_visitors" data-flag-title="MySQL基本使用(一)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 
+             </span>
+			 
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="MySQL建库和建表"><a href="#MySQL建库和建表" class="headerlink" title="MySQL建库和建表"></a>MySQL建库和建表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 如果存在名为SRS的数据库就删除它（慎重！！！)</span></span><br><span class="line">  <span class="keyword">drop</span> <span class="keyword">database</span> <span class="keyword">if</span> <span class="keyword">exists</span> SRS;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建名为SRS的数据库并设置默认字符集为utf8（如果不设定，出现中文会乱码）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> SRS <span class="keyword">default</span> <span class="keyword">charset</span> utf8 <span class="keyword">collate</span> utf8_bin;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 切换到SRS数据库</span></span><br><span class="line"><span class="keyword">use</span> SRS;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建学院表</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tb_college</span><br><span class="line">(</span><br><span class="line">collid <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> auto_increment <span class="keyword">comment</span> <span class="string">'学院编号'</span>,</span><br><span class="line">collname <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'学院名称'</span>,</span><br><span class="line">collmaster <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'院长姓名'</span>,</span><br><span class="line">collweb <span class="built_in">varchar</span>(<span class="number">511</span>) <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'学院网站'</span>,</span><br><span class="line">primary <span class="keyword">key</span> (collid)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加唯一约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tb_college <span class="keyword">add</span> <span class="keyword">constraint</span> uni_college_collname <span class="keyword">unique</span> (collname);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建学生表</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tb_student</span><br><span class="line">(</span><br><span class="line">stuid <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'学号'</span>,</span><br><span class="line">sname <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'学生姓名'</span>,</span><br><span class="line">gender <span class="built_in">bit</span> <span class="keyword">default</span> <span class="number">1</span> <span class="keyword">comment</span> <span class="string">'性别'</span>,</span><br><span class="line">birth <span class="built_in">date</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'出生日期'</span>,</span><br><span class="line">addr <span class="built_in">varchar</span>(<span class="number">255</span>) <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'籍贯'</span>,</span><br><span class="line">collid <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'所属学院编号'</span>,</span><br><span class="line">primary <span class="keyword">key</span> (stuid)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加外键约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tb_student <span class="keyword">add</span> <span class="keyword">constraint</span> fk_student_collid <span class="keyword">foreign</span> <span class="keyword">key</span> (collid) <span class="keyword">references</span> tb_college (collid);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建教师表</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tb_teacher</span><br><span class="line">(</span><br><span class="line">teaid <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'教师工号'</span>,</span><br><span class="line">tname <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'教师姓名'</span>,</span><br><span class="line">title <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="keyword">default</span> <span class="string">''</span> <span class="keyword">comment</span> <span class="string">'职称'</span>,</span><br><span class="line">collid <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'所属学院编号'</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加主键约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tb_teacher <span class="keyword">add</span> <span class="keyword">constraint</span> pk_teacher primary <span class="keyword">key</span> (teaid);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加外键约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tb_teacher <span class="keyword">add</span> <span class="keyword">constraint</span> fk_teacher_collid <span class="keyword">foreign</span> <span class="keyword">key</span> (collid) <span class="keyword">references</span> tb_college (collid);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建课程表</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tb_course</span><br><span class="line">(</span><br><span class="line">couid <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'课程编号'</span>,</span><br><span class="line">cname <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'课程名称'</span>,</span><br><span class="line">credit tinyint <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'学分'</span>,</span><br><span class="line">teaid <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'教师工号'</span>,</span><br><span class="line">primary <span class="keyword">key</span> (couid)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加外键约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tb_course <span class="keyword">add</span> <span class="keyword">constraint</span> fk_course_tid <span class="keyword">foreign</span> <span class="keyword">key</span> (teaid) <span class="keyword">references</span> tb_teacher (teaid);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建学生选课表</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tb_score</span><br><span class="line">(</span><br><span class="line">scid <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> auto_increment <span class="keyword">comment</span> <span class="string">'选课编号'</span>,</span><br><span class="line"><span class="keyword">sid</span> <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'学号'</span>,</span><br><span class="line">cid <span class="built_in">int</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">comment</span> <span class="string">'课程编号'</span>,</span><br><span class="line">seldate <span class="built_in">date</span> <span class="keyword">comment</span> <span class="string">'选课时间日期'</span>,</span><br><span class="line">mark <span class="built_in">decimal</span>(<span class="number">4</span>,<span class="number">1</span>) <span class="keyword">comment</span> <span class="string">'考试成绩'</span>,</span><br><span class="line">primary <span class="keyword">key</span> (scid)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 添加外键约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tb_score <span class="keyword">add</span> <span class="keyword">constraint</span> fk_score_sid <span class="keyword">foreign</span> <span class="keyword">key</span> (<span class="keyword">sid</span>) <span class="keyword">references</span> tb_student (stuid);</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tb_score <span class="keyword">add</span> <span class="keyword">constraint</span> fk_score_cid <span class="keyword">foreign</span> <span class="keyword">key</span> (cid) <span class="keyword">references</span> tb_course (couid);</span><br><span class="line"><span class="comment">-- 添加唯一约束</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tb_score <span class="keyword">add</span> <span class="keyword">constraint</span> uni_score_sid_cid <span class="keyword">unique</span> (<span class="keyword">sid</span>, cid);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入学院数据</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tb_college (collname, collmaster, collweb) <span class="keyword">values</span> </span><br><span class="line">(<span class="string">'计算机学院'</span>, <span class="string">'左冷禅'</span>, <span class="string">'http://www.abc.com'</span>),</span><br><span class="line">(<span class="string">'外国语学院'</span>, <span class="string">'岳不群'</span>, <span class="string">'http://www.xyz.com'</span>),</span><br><span class="line">(<span class="string">'经济管理学院'</span>, <span class="string">'风清扬'</span>, <span class="string">'http://www.foo.com'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入学生数据</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tb_student (stuid, sname, gender, birth, addr, collid) <span class="keyword">values</span></span><br><span class="line">(<span class="number">1001</span>, <span class="string">'杨逍'</span>, <span class="number">1</span>, <span class="string">'1990-3-4'</span>, <span class="string">'四川成都'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="number">1002</span>, <span class="string">'任我行'</span>, <span class="number">1</span>, <span class="string">'1992-2-2'</span>, <span class="string">'湖南长沙'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="number">1033</span>, <span class="string">'王语嫣'</span>, <span class="number">0</span>, <span class="string">'1989-12-3'</span>, <span class="string">'四川成都'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="number">1572</span>, <span class="string">'岳不群'</span>, <span class="number">1</span>, <span class="string">'1993-7-19'</span>, <span class="string">'陕西咸阳'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="number">1378</span>, <span class="string">'纪嫣然'</span>, <span class="number">0</span>, <span class="string">'1995-8-12'</span>, <span class="string">'四川绵阳'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="number">1954</span>, <span class="string">'林平之'</span>, <span class="number">1</span>, <span class="string">'1994-9-20'</span>, <span class="string">'福建莆田'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="number">2035</span>, <span class="string">'东方不败'</span>, <span class="number">1</span>, <span class="string">'1988-6-30'</span>, <span class="literal">null</span>, <span class="number">2</span>),</span><br><span class="line">(<span class="number">3011</span>, <span class="string">'林震南'</span>, <span class="number">1</span>, <span class="string">'1985-12-12'</span>, <span class="string">'福建莆田'</span>, <span class="number">3</span>),</span><br><span class="line">(<span class="number">3755</span>, <span class="string">'项少龙'</span>, <span class="number">1</span>, <span class="string">'1993-1-25'</span>, <span class="literal">null</span>, <span class="number">3</span>),</span><br><span class="line">(<span class="number">3923</span>, <span class="string">'杨不悔'</span>, <span class="number">0</span>, <span class="string">'1985-4-17'</span>, <span class="string">'四川成都'</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入老师数据</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tb_teacher (teaid, tname, title, collid) <span class="keyword">values</span> </span><br><span class="line">(<span class="number">1122</span>, <span class="string">'张三丰'</span>, <span class="string">'教授'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="number">1133</span>, <span class="string">'宋远桥'</span>, <span class="string">'副教授'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="number">1144</span>, <span class="string">'杨逍'</span>, <span class="string">'副教授'</span>, <span class="number">1</span>),</span><br><span class="line">(<span class="number">2255</span>, <span class="string">'范遥'</span>, <span class="string">'副教授'</span>, <span class="number">2</span>),</span><br><span class="line">(<span class="number">3366</span>, <span class="string">'韦一笑'</span>, <span class="string">'讲师'</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入课程数据</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tb_course (couid, cname, credit, teaid) <span class="keyword">values</span> </span><br><span class="line">(<span class="number">1111</span>, <span class="string">'Python程序设计'</span>, <span class="number">3</span>, <span class="number">1122</span>),</span><br><span class="line">(<span class="number">2222</span>, <span class="string">'Web前端开发'</span>, <span class="number">2</span>, <span class="number">1122</span>),</span><br><span class="line">(<span class="number">3333</span>, <span class="string">'操作系统'</span>, <span class="number">4</span>, <span class="number">1122</span>),</span><br><span class="line">(<span class="number">4444</span>, <span class="string">'计算机网络'</span>, <span class="number">2</span>, <span class="number">1133</span>),</span><br><span class="line">(<span class="number">5555</span>, <span class="string">'编译原理'</span>, <span class="number">4</span>, <span class="number">1144</span>),</span><br><span class="line">(<span class="number">6666</span>, <span class="string">'算法和数据结构'</span>, <span class="number">3</span>, <span class="number">1144</span>),</span><br><span class="line">(<span class="number">7777</span>, <span class="string">'经贸法语'</span>, <span class="number">3</span>, <span class="number">2255</span>),</span><br><span class="line">(<span class="number">8888</span>, <span class="string">'成本会计'</span>, <span class="number">2</span>, <span class="number">3366</span>),</span><br><span class="line">(<span class="number">9999</span>, <span class="string">'审计学'</span>, <span class="number">3</span>, <span class="number">3366</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入选课数据</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> tb_score (<span class="keyword">sid</span>, cid, seldate, mark) <span class="keyword">values</span> </span><br><span class="line">(<span class="number">1001</span>, <span class="number">1111</span>, <span class="string">'2017-09-01'</span>, <span class="number">95</span>),</span><br><span class="line">(<span class="number">1001</span>, <span class="number">2222</span>, <span class="string">'2017-09-01'</span>, <span class="number">87.5</span>),</span><br><span class="line">(<span class="number">1001</span>, <span class="number">3333</span>, <span class="string">'2017-09-01'</span>, <span class="number">100</span>),</span><br><span class="line">(<span class="number">1001</span>, <span class="number">4444</span>, <span class="string">'2018-09-03'</span>, <span class="literal">null</span>),</span><br><span class="line">(<span class="number">1001</span>, <span class="number">6666</span>, <span class="string">'2017-09-02'</span>, <span class="number">100</span>),</span><br><span class="line">(<span class="number">1002</span>, <span class="number">1111</span>, <span class="string">'2017-09-03'</span>, <span class="number">65</span>),</span><br><span class="line">(<span class="number">1002</span>, <span class="number">5555</span>, <span class="string">'2017-09-01'</span>, <span class="number">42</span>),</span><br><span class="line">(<span class="number">1033</span>, <span class="number">1111</span>, <span class="string">'2017-09-03'</span>, <span class="number">92.5</span>),</span><br><span class="line">(<span class="number">1033</span>, <span class="number">4444</span>, <span class="string">'2017-09-01'</span>, <span class="number">78</span>),</span><br><span class="line">(<span class="number">1033</span>, <span class="number">5555</span>, <span class="string">'2017-09-01'</span>, <span class="number">82.5</span>),</span><br><span class="line">(<span class="number">1572</span>, <span class="number">1111</span>, <span class="string">'2017-09-02'</span>, <span class="number">78</span>),</span><br><span class="line">(<span class="number">1378</span>, <span class="number">1111</span>, <span class="string">'2017-09-05'</span>, <span class="number">82</span>),</span><br><span class="line">(<span class="number">1378</span>, <span class="number">7777</span>, <span class="string">'2017-09-02'</span>, <span class="number">65.5</span>),</span><br><span class="line">(<span class="number">2035</span>, <span class="number">7777</span>, <span class="string">'2018-09-03'</span>, <span class="number">88</span>),</span><br><span class="line">(<span class="number">2035</span>, <span class="number">9999</span>, <span class="built_in">date</span>(<span class="keyword">now</span>()), <span class="literal">null</span>),</span><br><span class="line">(<span class="number">3755</span>, <span class="number">1111</span>, <span class="built_in">date</span>(<span class="keyword">now</span>()), <span class="literal">null</span>),</span><br><span class="line">(<span class="number">3755</span>, <span class="number">8888</span>, <span class="built_in">date</span>(<span class="keyword">now</span>()), <span class="literal">null</span>),</span><br><span class="line">(<span class="number">3755</span>, <span class="number">9999</span>, <span class="string">'2017-09-01'</span>, <span class="number">92</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询所有学生信息</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> tb_student;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询所有课程名称及学分(投影和别名)</span></span><br><span class="line"><span class="keyword">select</span> cname <span class="keyword">as</span> 课程名称, credit <span class="keyword">as</span> 学分 <span class="keyword">from</span> tb_course;</span><br><span class="line"><span class="comment">-- as 可以省略 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询所有女学生的姓名和出生日期(筛选)</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名, birth 出生日期 <span class="keyword">from</span> tb_student <span class="keyword">where</span> gender=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询所有80后学生的姓名、性别和出生日期(筛选)</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名, </span><br><span class="line"><span class="keyword">case</span> gender <span class="keyword">when</span> <span class="number">1</span> <span class="keyword">then</span> <span class="string">'男'</span> <span class="keyword">else</span> <span class="string">'女'</span> <span class="keyword">end</span> 性别, </span><br><span class="line">birth 出生日期 <span class="keyword">from</span> tb_student </span><br><span class="line"><span class="keyword">where</span> birth <span class="keyword">between</span> <span class="string">'1980-1-1'</span> <span class="keyword">and</span> <span class="string">'1989-12-31'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 写法二 使用函数</span></span><br><span class="line"><span class="keyword">select</span> </span><br><span class="line">  sname 姓名, </span><br><span class="line">  <span class="keyword">if</span> (gender, <span class="string">'男'</span>,<span class="string">'女'</span>) 性别, </span><br><span class="line">  birth 出生日期 <span class="keyword">from</span> tb_student </span><br><span class="line"><span class="keyword">where</span> birth <span class="keyword">between</span> <span class="string">'1980-1-1'</span> <span class="keyword">and</span> <span class="string">'1989-12-31'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询名字有4个中文字符的学生学号和姓名（函数）</span></span><br><span class="line"><span class="comment">-- utf-8 一个字符=三个字节</span></span><br><span class="line"><span class="keyword">select</span> stuid <span class="keyword">as</span> 学号,sname <span class="keyword">as</span> 姓名 <span class="keyword">from</span> tb_student</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">length</span>(sname)/<span class="number">3</span>=<span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询姓”杨“的学生姓名和性别(模糊)</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名,<span class="keyword">if</span> (gender,<span class="string">'男'</span>,<span class="string">'女'</span>) <span class="keyword">as</span> 性别</span><br><span class="line"><span class="keyword">from</span> tb_student <span class="keyword">where</span> sname <span class="keyword">like</span> <span class="string">'杨%'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询姓”杨“名字两个字的学生姓名和性别(模糊)</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名,<span class="keyword">if</span> (gender,<span class="string">'男'</span>,<span class="string">'女'</span>) <span class="keyword">as</span> 性别</span><br><span class="line"><span class="keyword">from</span> tb_student <span class="keyword">where</span> sname <span class="keyword">like</span> <span class="string">'杨_'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询姓”杨“名字三个字的学生姓名和性别(模糊)</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名,<span class="keyword">if</span> (gender,<span class="string">'男'</span>,<span class="string">'女'</span>) <span class="keyword">as</span> 性别</span><br><span class="line"><span class="keyword">from</span> tb_student <span class="keyword">where</span> sname <span class="keyword">like</span> <span class="string">'杨__'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询名字中有”不“字或“嫣”字的学生的姓名(模糊)</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名,<span class="keyword">if</span> (gender,<span class="string">'男'</span>,<span class="string">'女'</span>) <span class="keyword">as</span> 性别</span><br><span class="line"><span class="keyword">from</span> tb_student <span class="keyword">where</span> sname <span class="keyword">like</span> <span class="string">'%不%'</span> <span class="keyword">or</span> sname <span class="keyword">like</span><span class="string">'%嫣%'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询没有录入家庭住址的学生姓名(空值)</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名 </span><br><span class="line"><span class="keyword">from</span> tb_student <span class="keyword">where</span> addr <span class="keyword">is</span> <span class="literal">null</span> <span class="keyword">or</span> addr = <span class="string">''</span>;</span><br><span class="line">   </span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询录入了家庭住址的学生姓名(空值)</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名 <span class="keyword">from</span> tb_student </span><br><span class="line"><span class="keyword">where</span> addr <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">and</span> addr &lt;&gt; <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询学生选课的所有日期(去重)</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> seldate <span class="keyword">from</span> tb_score;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询学生的家庭住址(去重)</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> addr <span class="keyword">from</span> tb_student </span><br><span class="line"><span class="keyword">where</span> addr <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span> <span class="keyword">and</span> addr &lt;&gt; <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询男学生的姓名和生日按年龄从大到小排列(排序)</span></span><br><span class="line"><span class="comment">-- asc (默认) 升序 / desc 降序</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名,birth 出生日期 <span class="keyword">from</span> tb_student</span><br><span class="line"><span class="keyword">where</span> gender = <span class="number">1</span> <span class="keyword">order</span> <span class="keyword">by</span> birth <span class="keyword">desc</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> sname 姓名,<span class="keyword">year</span>(<span class="keyword">now</span>())-<span class="keyword">year</span>(birth) <span class="keyword">as</span> 年龄 <span class="keyword">from</span> tb_student </span><br><span class="line"><span class="keyword">where</span> gender=<span class="number">1</span> <span class="keyword">order</span> <span class="keyword">by</span> 年龄 <span class="keyword">desc</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> stuid 学号,sname 姓名,gender 出生日期 <span class="keyword">from</span> tb_student</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> gender <span class="keyword">asc</span>, stuid <span class="keyword">desc</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 聚合函数： max/ min / sum /avg / count</span></span><br><span class="line"><span class="comment">-- 查询年龄最大的学生的出生日期(聚合函数)</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">min</span>(birth) <span class="keyword">from</span> tb_student;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询年龄最小的学生的出生日期(聚合函数)</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">max</span>(birth) <span class="keyword">from</span> tb_student;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询男女学生的人数(分组和聚合函数)</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">if</span>(gender,<span class="string">'男'</span>,<span class="string">'女'</span>) 性别, <span class="keyword">count</span>(gender) 人数 <span class="keyword">from</span> tb_student</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> gender;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询课程编号为1111的课程的平均成绩(筛选和聚合函数)</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(mark)<span class="keyword">as</span> 平均成绩 <span class="keyword">from</span> tb_score <span class="keyword">where</span> cid = <span class="number">1111</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询学号为1001的学生所有课程的平均分(筛选和聚合函数)</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(mark) 平均成绩 <span class="keyword">from</span> tb_score <span class="keyword">where</span> <span class="keyword">sid</span> = <span class="number">1001</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询每个学生的学号和平均成绩(分组和聚合函数)</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sid</span> 学号, <span class="keyword">avg</span>(mark) 平均分 <span class="keyword">from</span> tb_score</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">sid</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询平均成绩大于等于90分的学生的学号和平均成绩</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sid</span> 学号, <span class="keyword">avg</span>(mark) 平均分 <span class="keyword">from</span> tb_score</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">sid</span> <span class="keyword">having</span> 平均分&gt;=<span class="number">90</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询平均成绩大于等于90分的学生且学号为1开头学号的 学号和平均成绩</span></span><br><span class="line"><span class="comment">-- where 用于分组之前的筛选， 分组之后用 having</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sid</span> 学号, <span class="keyword">avg</span>(mark) 平均分 <span class="keyword">from</span> tb_score</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">sid</span> <span class="keyword">between</span> <span class="number">1000</span> <span class="keyword">and</span> <span class="number">1999</span> <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">sid</span> <span class="keyword">having</span> 平均分&gt;=<span class="number">90</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> 平均分 <span class="keyword">desc</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询年龄最大的学生的姓名(子查询)</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名 <span class="keyword">from</span> tb_student</span><br><span class="line"><span class="keyword">where</span> birth=(<span class="keyword">select</span> <span class="keyword">min</span>(birth) <span class="keyword">from</span> tb_student);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询年龄最大的学生姓名和年龄(子查询+运算)</span></span><br><span class="line"><span class="comment">-- 把一个查询的结果当成另一个查询的一部分来使用</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名,  <span class="keyword">from</span> tb_student</span><br><span class="line"><span class="keyword">where</span> birth=(<span class="keyword">select</span> <span class="keyword">min</span>(birth) <span class="keyword">from</span> tb_student);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询选了两门以上的课程的学生姓名(子查询/分组条件/集合运算)</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名 <span class="keyword">from</span> tb_student</span><br><span class="line"><span class="keyword">where</span> stuid <span class="keyword">in</span></span><br><span class="line">(<span class="keyword">select</span> <span class="keyword">sid</span> <span class="keyword">from</span> tb_score <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">sid</span> <span class="keyword">having</span> <span class="keyword">count</span>(<span class="keyword">sid</span>)&gt;<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询学生姓名、课程名称以及成绩(连接查询)</span></span><br><span class="line"><span class="keyword">select</span> sname , cname, mark</span><br><span class="line"><span class="keyword">from</span> tb_student, tb_course, tb_score</span><br><span class="line"><span class="keyword">where</span> stuid=<span class="keyword">sid</span> <span class="keyword">and</span> couid=cid <span class="keyword">limit</span> <span class="number">5</span> <span class="keyword">offset</span> <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 分页查询</span></span><br><span class="line"><span class="keyword">select</span> sname 学生姓名, cname 课程名称, mark 考试成绩</span><br><span class="line"><span class="keyword">from</span> tb_student <span class="keyword">inner</span> <span class="keyword">join</span> tb_score <span class="keyword">on</span> stuid=<span class="keyword">sid</span></span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> tb_course <span class="keyword">on</span> couid=cid <span class="keyword">limit</span> <span class="number">5</span> <span class="keyword">offset</span> <span class="number">15</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> sname 学生姓名, cname 课程名称, mark 考试成绩</span><br><span class="line"><span class="keyword">from</span> tb_student <span class="keyword">inner</span> <span class="keyword">join</span> tb_score <span class="keyword">on</span> stuid=<span class="keyword">sid</span></span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> tb_course <span class="keyword">on</span> couid=cid <span class="keyword">limit</span> <span class="number">15</span>,<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询选课学生的姓名和平均成绩(子查询和连接查询)</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名, avgmark 平均分</span><br><span class="line"><span class="keyword">from</span> tb_student t1,</span><br><span class="line">(<span class="keyword">select</span> <span class="keyword">sid</span>, <span class="keyword">avg</span>(mark) <span class="keyword">as</span> avgmark</span><br><span class="line"><span class="keyword">from</span> tb_score <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">sid</span>) t2</span><br><span class="line"><span class="keyword">where</span> stuid=<span class="keyword">sid</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 方法二 内连接</span></span><br><span class="line"><span class="keyword">select</span> sname 姓名, avgmark 平均分</span><br><span class="line"><span class="keyword">from</span> tb_student t1 <span class="keyword">inner</span> <span class="keyword">join</span></span><br><span class="line">(<span class="keyword">select</span> <span class="keyword">sid</span>, <span class="keyword">avg</span>(mark) <span class="keyword">as</span> avgmark</span><br><span class="line"><span class="keyword">from</span> tb_score <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">sid</span>) t2</span><br><span class="line"><span class="keyword">on</span> stuid=<span class="keyword">sid</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询每个学生的姓名和选课数量(左外连接和子查询)</span></span><br><span class="line"><span class="comment">-- 内连接只能将满足连表条件的连表记录查出来</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 左外连接：将左表不满足连表条件的记录查出来 不满足连表条件的地方补null</span></span><br><span class="line"><span class="comment">-- 右外连接：将右表不满足连表条件的记录查出来 不满足连表条件的地方补null</span></span><br><span class="line"><span class="comment">-- 在连接多表查询时写在前面的表称为左表，写在后面的表称为右表</span></span><br><span class="line"><span class="comment">-- left outer join / right outer join  -- outer可以省略</span></span><br><span class="line"><span class="comment">-- MySQL不支持全外连接 full outer join</span></span><br><span class="line"><span class="keyword">select</span> sname <span class="keyword">as</span> 姓名, <span class="keyword">ifnull</span>(total, <span class="number">0</span>) <span class="keyword">as</span> 选课数量</span><br><span class="line"><span class="keyword">from</span> tb_student t1</span><br><span class="line"><span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> (<span class="keyword">select</span> <span class="keyword">sid</span>, <span class="keyword">count</span>(<span class="keyword">sid</span>) <span class="keyword">as</span> total</span><br><span class="line"><span class="keyword">from</span> tb_score <span class="keyword">group</span> <span class="keyword">by</span> <span class="keyword">sid</span>)t2</span><br><span class="line"><span class="keyword">on</span> stuid=<span class="keyword">sid</span>;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+	
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">
+            -------------本文结束
+            <i class="fa fa-paw"></i>
+            感谢您的阅读-------------
+        </div>
+    
+</div>
+	  
+	</div>
+	
+	<div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag"><i class="fa fa-tag"></i> SQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/27/Redis基础（一）/" rel="next" title="Redis基础（一）">
+                <i class="fa fa-chevron-left"></i> Redis基础（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://pk0mla8df.bkt.clouddn.com/5467272669401b07185e3c28.jpg" alt="ChongJing001">
+            
+              <p class="site-author-name" itemprop="name">ChongJing001</p>
+              <p class="site-description motion-element" itemprop="description">我是描述</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/chongjing001" title="GitHub &rarr; https://github.com/chongjing001" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://blog.csdn.net/qq_42874994" title="CSND &rarr; https://blog.csdn.net/qq_42874994" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>CSND</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/37f4a7a33d19" title="简书 &rarr; https://www.jianshu.com/u/37f4a7a33d19" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://weibo.com" title="微博 &rarr; http://weibo.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.facebook.com" title="facebook &rarr; https://www.facebook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>facebook</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:yourname@gmail.com" title="E-Mail &rarr; mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://plus.google.com/yourname" title="Google &rarr; https://plus.google.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i>Google</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://youtube.com/yourname" title="YouTube &rarr; https://youtube.com/yourname" rel="noopener" target="_blank"><i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.uisdc.com/" title="http://www.uisdc.com/" rel="noopener" target="_blank">优设</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://smallpdf.com/cn" title="https://smallpdf.com/cn" rel="noopener" target="_blank">FPD转化</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.liaoxuefeng.com/" title="https://www.liaoxuefeng.com/" rel="noopener" target="_blank">廖雪峰</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.alloyteam.com/nav/" title="http://www.alloyteam.com/nav/" rel="noopener" target="_blank">Web前端导航</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.36zhen.com/t?id=3448" title="http://www.36zhen.com/t?id=3448" rel="noopener" target="_blank">前端书籍资料</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://wf.uisdc.com/cn/" title="http://wf.uisdc.com/cn/" rel="noopener" target="_blank">google前端开发基础</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.ip138.com/ips1388.asp" title="http://www.ip138.com/ips1388.asp" rel="noopener" target="_blank">IP查询</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL建库和建表"><span class="nav-number">1.</span> <span class="nav-text">MySQL建库和建表</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">true</span>
+  
+  
+  
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+  
+  <script color="255,255,0" opacity="0.6" zindex="-1" count="200" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '2LmF6sVQMWHEBU8CPfn2wciU-gzGzoHsz',
+        appKey: 'AvEqQS2iaddiVb0el5sqMFum',
+        placeholder: 'en~ヾﾉ≧∀≦)o',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: true
+    });
+  </script>
+
+
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+  
+  
+  <script type="text/javascript" color="0,0,255" opacity="0.7" zindex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

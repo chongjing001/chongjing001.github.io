@@ -1107,7 +1107,7 @@ pre .javascript .function {
   bottom: 19px;
 }
 .header {
-  background: transparent;
+  background-image: url("http://pk0mla8df.bkt.clouddn.com/mooskd.jpg");
 }
 .header-inner {
   position: relative;
@@ -1132,6 +1132,7 @@ pre .javascript .function {
   color: #fff;
   background: #222;
   border-bottom: none;
+  background-color: #e50c0c;
 }
 .brand:hover {
   color: #fff;
@@ -1206,6 +1207,8 @@ pre .javascript .function {
   margin-top: 20px;
   padding-left: 0;
   text-align: center;
+  background-color: rgba(237,229,51,0.471);
+  border: solid 1px rgba(243,68,5,0.522);
 }
 .menu .menu-item {
   display: inline-block;
@@ -1237,6 +1240,11 @@ pre .javascript .function {
 }
 .use-motion .menu-item {
   opacity: 0;
+}
+#content .post {
+  margin-top: 5px;
+  margin-bottom: 60px;
+  padding: 25px;
 }
 .post-body {
   overflow-wrap: break-word;
@@ -1288,7 +1296,7 @@ pre .javascript .function {
   opacity: 0;
 }
 .posts-expand {
-  padding-top: 40px;
+  padding-top: 0px;
 }
 @media (max-width: 767px) {
   .posts-expand {
@@ -1919,7 +1927,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #20d6d0;
+  background: #59ff83;
 }
 .links-of-blogroll {
   font-size: 13px;

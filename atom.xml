@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-12-28T11:40:55.978Z</updated>
+  <updated>2019-01-02T12:45:02.955Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Django基础（一）- 搭建基本的网站</title>
+    <link href="http://yoursite.com/2019/01/02/djangoDay1/"/>
+    <id>http://yoursite.com/2019/01/02/djangoDay1/</id>
+    <published>2019-01-02T10:43:32.370Z</published>
+    <updated>2019-01-02T12:45:02.955Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="虚拟环境："><a href="#虚拟环境：" class="headerlink" title="虚拟环境："></a>虚拟环境：</h4><ul><li><p>安装：pip install virtualenv<br> 使用： virtualenv –no-site-packages -p 环境位置  项目名</p><pre><code>--no-site-packages:表示创建的环境为纯净环境，不安装其他的</code></pre></li><li><p>pip使用：</p><pre><code>pip list : 查看安装的库pip install xxx: 安装</code></pre><p> 激活虚拟环境： winows: activate </p><pre><code>mac/linux : 直接执行scurce activat</code></pre><p> <strong>注意：要到环境文件中激活虚拟环境</strong><br> <img src="/img/dj1.png" alt=""> </p></li></ul><p>退出虚拟环境  deactivate</p><h4 id="Django项目创建："><a href="#Django项目创建：" class="headerlink" title="Django项目创建："></a>Django项目创建：</h4><p>django-admin startproject 项目名称<br><strong>注意切换到你的代码文件目录下创建</strong></p><p>启动命令： python manage.py runserver 默认ip为127.0.0.1 默认端口为8000</p><p>修改启动端口： python manage.py runserver 端口<br>修改ip和端口： python manage.py runserver ip:端口<br>                  ip参数：0.0.0.0 表示任何人都可以通过公网ip访问Django项目<br>                  端口prot参数：如果端口设置为80，表示改端口可以不用写<br><strong>在pycharm中切换为上面创建的虚拟环境，执行启动命令，结果如下：</strong><br><img src="/img/dj2.png" alt=""><br>打开上图网址，最基本的Django框架就OK了<br><img src="/img/dj3.png" alt=""></p><h4 id="settings-py配置文件设置"><a href="#settings-py配置文件设置" class="headerlink" title="settings.py配置文件设置"></a>settings.py配置文件设置</h4><ul><li>语言设置<br>LANGUAGE_CODE = ‘zh-hans’ 表示中文 LANGUAGE_CODE = ‘en-us’ 表示英文<br>设置时区：TIME_ZONE = ‘Asia/Shanghai’<br>时区默认是UTC：世界标准时间，也就是平常说的零时区。 北京时间表示东八区时间，即UTC+8<br>再打开网页刷新一下<br><img src="/img/dj4.png" alt=""></li><li>连接数据库<br>修改配置文件<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 原配置</span></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.sqlite3'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: os.path.join(BASE_DIR, <span class="string">'db.sqlite3'</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改后的</span></span><br><span class="line">DATABASES = &#123;</span><br><span class="line">    <span class="string">'default'</span>: &#123;</span><br><span class="line">        <span class="string">'ENGINE'</span>: <span class="string">'django.db.backends.mysql'</span>,</span><br><span class="line">        <span class="string">'NAME'</span>: <span class="string">'数据库名'</span>, <span class="comment"># 要是存在的数据库</span></span><br><span class="line">        <span class="string">'PORT'</span>: <span class="string">'端口（MySQL默认的为3306）'</span>,</span><br><span class="line">        <span class="string">'USER'</span>: <span class="string">'用户名'</span>, <span class="comment"># MySQL的用户名和密码</span></span><br><span class="line">        <span class="string">'PASSWORD'</span> : <span class="string">'密码'</span>,</span><br><span class="line">        <span class="string">'HOST'</span> : <span class="string">'MySQL服务器的ip地址'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p><strong>需要安装MySQL客户端<br>在创建Terminal中输入 pip install pymysql 即可</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装pymysql：使用pymysql连接数据库：因为python3没有MySQLdb驱动，无法直接连接MySQL</span></span><br><span class="line"><span class="comment"># 在工程目录的__init__.py文件中加入</span></span><br><span class="line"><span class="keyword">import</span> pymysql</span><br><span class="line"></span><br><span class="line">pymysql.install_as_MySQLdb()</span><br></pre></td></tr></table></figure></p><p>在上面的网址后面加上admin，(<a href="http://127.0.0.1:8000/admin)再访问" target="_blank" rel="noopener">http://127.0.0.1:8000/admin)再访问</a><br><img src="/img/dj5.png" alt=""></p><h4 id="添加账号"><a href="#添加账号" class="headerlink" title="添加账号"></a>添加账号</h4><ul><li>迁移：<br>迁移默认文件：python manage.py migrate<br><img src="/img/dj6.png" alt=""><br><img src="/img/dj7.png" alt=""><br>添加管理员账号：python manage.py createsuperuser<br><img src="/img/dj8.png" alt=""><br>现在在运行服务器就可以用刚才创建的账号登陆了<br><img src="/img/dj9.png" alt=""></li></ul><p><strong>以上就是django基础框架搭建<br>自定义模板待续…</strong></p><h4 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h4><p>MVC（model,view,controller）模式是所有框架遵循的模式</p><pre><code>M: 模型层V: 模板，Html页面C: controller，控制器，写业务逻辑的地方</code></pre><p>严格来说，Django的模式应该是MVT模式，本质上和MVC没什么区别，也是各组件之间为了保持松耦合关系，只是定义上有些许不同<br>MVT (model,view,template )：<br>    M： models.py 模型层：定义模型和数据库中表<br>    V:  views.py  视图层：定义业务逻辑<br>    T:  templates  模板，定义HTML的地方</p><p>MVT模式是由MVT模式演变出来的</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;虚拟环境：&quot;&gt;&lt;a href=&quot;#虚拟环境：&quot; class=&quot;headerlink&quot; title=&quot;虚拟环境：&quot;&gt;&lt;/a&gt;虚拟环境：&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;安装：pip install virtualenv&lt;br&gt; 使用： virtualenv –no-
+      
+    
+    </summary>
+    
+      <category term="Django" scheme="http://yoursite.com/categories/Django/"/>
+    
+    
+      <category term="网站搭建" scheme="http://yoursite.com/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
   
   <entry>
     <title>Redis基础 String（字符串）- 常用指令</title>

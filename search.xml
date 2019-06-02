@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[~火影~]]></title>
     <url>%2F2019%2F01%2F28%2F~%E7%81%AB%E5%BD%B1~%2F</url>
-    <content type="text"><![CDATA[1&lt;iframe height=498 width=510 src='http://player.youku.com/embed/XMzcyNjU4ODA2MA==' frameborder=0 'allowfullscreen'&gt;&lt;/iframe&gt;]]></content>
+    <content type="text"><![CDATA[(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"autoplay":true,"hotkey":true,"preload":"metadata","video":{"url":"https://v.youku.com/v_show/id_XNDAzNTc4NjIwMA"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()]]></content>
       <categories>
         <category>曾经的青春</category>
       </categories>

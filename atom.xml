@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-28T12:54:27.249Z</updated>
+  <updated>2019-06-02T08:39:13.275Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,15 +21,18 @@
     <link href="http://yoursite.com/2019/01/28/~%E7%81%AB%E5%BD%B1~/"/>
     <id>http://yoursite.com/2019/01/28/~火影~/</id>
     <published>2019-01-28T12:45:04.206Z</published>
-    <updated>2019-01-28T12:54:27.249Z</updated>
+    <updated>2019-06-02T08:39:13.275Z</updated>
     
-    <content type="html"><![CDATA[<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">height</span>=<span class="string">498</span> <span class="attr">width</span>=<span class="string">510</span> <span class="attr">src</span>=<span class="string">'http://player.youku.com/embed/XMzcyNjU4ODA2MA=='</span> <span class="attr">frameborder</span>=<span class="string">0</span> '<span class="attr">allowfullscreen</span>'&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<iframe height="498" width="510" src="http://player.youku.com/embed/XMzcyNjU4ODA2MA"></iframe><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"autoplay":true,"hotkey":true,"preload":"metadata","video":{"url":"https://v.youku.com/v_show/id_XNDAzNTc4NjIwMA"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script> ]]></content>
     
     <summary type="html">
     
       
       
-        &lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span clas
+        &lt;iframe height=&quot;498&quot; width=&quot;510&quot; src=&quot;http://player.youku.com/embed/XMzcyNjU4ODA2MA&quot;&gt;&lt;/iframe&gt;
+
+
+&lt;div id=&quot;dplayer0&quot; class=&quot;dplayer hexo-tag-
       
     
     </summary>
